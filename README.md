@@ -23,10 +23,10 @@ xyFS不仅仅是独立可用的文件系统，还通过接口灵活集成以下�
 #### 软件组成
 
 
-- 1.xyFS 管理后端
-- 2.xyFS Web前端
-- 3.xyFS HTTP API
-- 4.xyFS JAVA Client
+- 1.xyFS 管理后端；
+- 2.xyPortal Web前端中的“文档库”部分（xyPortal 不开源）；
+- 3.xyFS HTTP API；
+- 4.xyFS JAVA Client；
 
 #### 采用技术
 
