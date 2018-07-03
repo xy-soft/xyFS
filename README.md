@@ -35,7 +35,8 @@ xyFS不仅仅是独立可用的文件系统，还通过接口灵活集成以下�
 - 2.HTML + Layer + Bootstrap
 - 3.Tomcat
 - 4.MySQL
-- 5.Nginx
+- 5.Gradle
+- 6.Nginx
 
 #### 安装教程
 
