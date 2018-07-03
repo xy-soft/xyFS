@@ -4,23 +4,30 @@ import java.io.Serializable;
 import javax.persistence.*;
 
 
+
 /**
  * The persistent class for the app database table.
  * 
  */
 @Entity
+@Table(name="app")
+@NamedQueries({
+	@NamedQuery(name="App.findAll", query="SELECT a FROM App a"),
+    @NamedQuery(name="App.findbyCode",query="SELECT a FROM App a WHERE a.code = :code")
+         
+})
 public class App implements Serializable {
 	private static final long serialVersionUID = 1L;
 
 	@Id
-	@GeneratedValue(strategy=GenerationType.AUTO)
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
 	private int id;
+
+	private String appkey;
 
 	private String available;
 
 	private String code;
-
-	private String key;
 
 	private String name;
 
@@ -33,6 +40,14 @@ public class App implements Serializable {
 
 	public void setId(int id) {
 		this.id = id;
+	}
+
+	public String getAppkey() {
+		return this.appkey;
+	}
+
+	public void setAppkey(String appkey) {
+		this.appkey = appkey;
 	}
 
 	public String getAvailable() {
@@ -49,14 +64,6 @@ public class App implements Serializable {
 
 	public void setCode(String code) {
 		this.code = code;
-	}
-
-	public String getKey() {
-		return this.key;
-	}
-
-	public void setKey(String key) {
-		this.key = key;
 	}
 
 	public String getName() {

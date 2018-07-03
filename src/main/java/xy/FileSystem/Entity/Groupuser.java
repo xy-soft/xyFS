@@ -11,7 +11,11 @@ import javax.persistence.*;
 @Entity
 public class Groupuser implements Serializable {
 	private static final long serialVersionUID = 1L;
-
+	
+	@Id
+	@GeneratedValue(strategy=GenerationType.IDENTITY)
+	private Long id;
+	
 	private String groupId;
 
 	private String userName;
@@ -19,6 +23,14 @@ public class Groupuser implements Serializable {
 	public Groupuser() {
 	}
 
+	public Long getId() {
+		return this.id;
+	}
+
+	public void setId(Long id) {
+		this.id = id;
+	}
+	
 	public String getGroupId() {
 		return this.groupId;
 	}

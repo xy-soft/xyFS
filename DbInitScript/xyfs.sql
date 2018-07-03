@@ -1,3 +1,17 @@
+/*
+Navicat MySQL Data Transfer
+
+Source Server         : localhost3306
+Source Server Version : 50550
+Source Host           : localhost:3306
+Source Database       : xyfs
+
+Target Server Type    : MYSQL
+Target Server Version : 50550
+File Encoding         : 65001
+
+Date: 2018-07-03 16:32:13
+*/
 
 SET FOREIGN_KEY_CHECKS=0;
 
@@ -7,31 +21,33 @@ SET FOREIGN_KEY_CHECKS=0;
 DROP TABLE IF EXISTS `app`;
 CREATE TABLE `app` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `name` varchar(30) DEFAULT NULL,
-  `code` varchar(30) DEFAULT NULL,
-  `key` varchar(50) DEFAULT NULL,
-  `available` char(1) DEFAULT 'y' COMMENT '是否可用',
+  `appkey` varchar(255) DEFAULT NULL,
+  `available` varchar(255) DEFAULT NULL,
+  `code` varchar(255) DEFAULT NULL,
+  `name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of app
 -- ----------------------------
-INSERT INTO `app` VALUES ('1', 'xyTalk', 'xyTalk', null, null);
-INSERT INTO `app` VALUES ('2', 'xyPortal', 'xyPortal', null, null);
+INSERT INTO `app` VALUES ('1', 'password', '1', 'test1', 'test1');
+INSERT INTO `app` VALUES ('2', 'password', '1', 'test2', 'test2');
+INSERT INTO `app` VALUES ('3', 'password', '1', 'test3', 'test3');
+INSERT INTO `app` VALUES ('4', 'password', '1', 'test4', 'test4');
 
 -- ----------------------------
 -- Table structure for `dailyreport`
 -- ----------------------------
 DROP TABLE IF EXISTS `dailyreport`;
 CREATE TABLE `dailyreport` (
-  `id` int(11) NOT NULL DEFAULT '0',
-  `files` int(11) DEFAULT NULL,
-  `groups` int(11) DEFAULT NULL,
-  `spaces` int(11) DEFAULT NULL,
-  `curdate` varchar(30) DEFAULT NULL,
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `curdate` varchar(255) DEFAULT NULL,
+  `files` int(11) NOT NULL,
+  `groups` int(11) NOT NULL,
+  `spaces` int(11) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of dailyreport
@@ -42,31 +58,31 @@ CREATE TABLE `dailyreport` (
 -- ----------------------------
 DROP TABLE IF EXISTS `diskfile`;
 CREATE TABLE `diskfile` (
-  `fileid` varchar(36) NOT NULL COMMENT '文件ID',
-  `appid` int(11) DEFAULT NULL COMMENT '所属app应用ID',
-  `formId` varchar(50) DEFAULT NULL COMMENT '用于集成第三方系统，比如表单ID',
-  `filesource` varchar(10) DEFAULT NULL COMMENT '来源：xyFS\\Seafile\\FastDFS\\MongoDB\\BFS\\PaxosStore\\aliOSS\\qiniu\\CFS',
-  `fileName` varchar(100) NOT NULL,
-  `fileSize` bigint(20) DEFAULT NULL,
-  `fileExt` varchar(20) DEFAULT NULL,
-  `fileUrl` varchar(100) DEFAULT NULL,
-  `fileFlag` char(1) DEFAULT NULL COMMENT '可用：1；已删除：0',
-  `dfsGroupName` varchar(100) DEFAULT NULL,
-  `uploadDate` datetime DEFAULT NULL,
-  `uploadUser` varchar(50) DEFAULT NULL,
-  `expirationDate` datetime DEFAULT NULL,
-  `ispublic` char(1) DEFAULT NULL,
-  `groupId` varchar(50) DEFAULT NULL,
-  `groupName` varchar(100) DEFAULT NULL,
-  `downloadNum` int(11) DEFAULT '0',
-  `downloadPwd` varchar(64) DEFAULT NULL,
-  `extra1` varchar(100) DEFAULT NULL,
-  `extra2` varchar(100) DEFAULT NULL,
-  `extra3` varchar(100) DEFAULT NULL,
-  `extra4` varchar(100) DEFAULT NULL,
-  `extra5` varchar(100) DEFAULT NULL,
+  `fileid` varchar(255) NOT NULL,
+  `appid` int(11) NOT NULL,
+  `dfs_group_name` varchar(255) DEFAULT NULL,
+  `download_num` int(11) NOT NULL,
+  `download_pwd` varchar(255) DEFAULT NULL,
+  `expiration_date` datetime DEFAULT NULL,
+  `extra1` varchar(255) DEFAULT NULL,
+  `extra2` varchar(255) DEFAULT NULL,
+  `extra3` varchar(255) DEFAULT NULL,
+  `extra4` varchar(255) DEFAULT NULL,
+  `extra5` varchar(255) DEFAULT NULL,
+  `file_ext` varchar(255) DEFAULT NULL,
+  `file_flag` varchar(255) DEFAULT NULL,
+  `file_name` varchar(255) DEFAULT NULL,
+  `file_size` decimal(19,2) DEFAULT NULL,
+  `file_url` varchar(255) DEFAULT NULL,
+  `filesource` varchar(255) DEFAULT NULL,
+  `form_id` varchar(255) DEFAULT NULL,
+  `group_id` varchar(255) DEFAULT NULL,
+  `group_name` varchar(255) DEFAULT NULL,
+  `ispublic` varchar(255) DEFAULT NULL,
+  `upload_date` datetime DEFAULT NULL,
+  `upload_user` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`fileid`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of diskfile
@@ -77,24 +93,24 @@ CREATE TABLE `diskfile` (
 -- ----------------------------
 DROP TABLE IF EXISTS `diskgroup`;
 CREATE TABLE `diskgroup` (
-  `groupId` varchar(50) NOT NULL,
-  `groupName` varchar(50) DEFAULT NULL,
-  `fatherGroupId` varchar(50) DEFAULT NULL COMMENT '上级父亲组ID',
-  `groupCnName` varchar(100) DEFAULT NULL,
-  `groupFlag` char(1) DEFAULT NULL,
-  `groupCreator` varchar(50) DEFAULT NULL,
-  `groupType` varchar(10) DEFAULT NULL COMMENT '组类型：MUC、文档库、图片、私有组',
-  `administrator` varchar(50) DEFAULT NULL,
-  `createDate` datetime DEFAULT NULL,
-  `maxNum` int(11) DEFAULT NULL,
-  `extra1` varchar(100) DEFAULT NULL,
-  `extra2` varchar(100) DEFAULT NULL,
-  `extra3` varchar(100) DEFAULT NULL,
-  `extra4` varchar(100) DEFAULT NULL,
-  `extra5` varchar(100) DEFAULT '',
-  `isPublic` char(255) DEFAULT 'y' COMMENT '是否是公开组',
-  PRIMARY KEY (`groupId`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `group_id` varchar(50) NOT NULL,
+  `administrator` varchar(255) DEFAULT NULL,
+  `create_date` datetime DEFAULT NULL,
+  `extra1` varchar(255) DEFAULT NULL,
+  `extra2` varchar(255) DEFAULT NULL,
+  `extra3` varchar(255) DEFAULT NULL,
+  `extra4` varchar(255) DEFAULT NULL,
+  `extra5` varchar(255) DEFAULT NULL,
+  `father_group_id` varchar(255) DEFAULT NULL,
+  `group_cn_name` varchar(255) DEFAULT NULL,
+  `group_creator` varchar(255) DEFAULT NULL,
+  `group_flag` varchar(255) DEFAULT NULL,
+  `group_name` varchar(255) DEFAULT NULL,
+  `group_type` varchar(255) DEFAULT NULL,
+  `is_public` varchar(255) DEFAULT NULL,
+  `max_num` int(11) NOT NULL,
+  PRIMARY KEY (`group_id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of diskgroup
@@ -105,62 +121,80 @@ CREATE TABLE `diskgroup` (
 -- ----------------------------
 DROP TABLE IF EXISTS `diskuser`;
 CREATE TABLE `diskuser` (
-  `userName` varchar(50) NOT NULL,
-  `userCnName` varchar(50) DEFAULT NULL,
-  `userFlag` char(1) DEFAULT NULL COMMENT '可用：1；已删除：0',
-  `password` varchar(64) DEFAULT NULL,
-  `appId` int(11) DEFAULT NULL COMMENT 'app应用ID',
-  `isAdmin` char(1) DEFAULT NULL COMMENT '是否超级管理员',
-  `phone` varchar(20) DEFAULT NULL,
-  `email` varchar(50) DEFAULT NULL,
-  `firstDate` datetime DEFAULT NULL,
-  `lastDate` datetime DEFAULT NULL,
-  `maxSpace` bigint(20) DEFAULT NULL,
-  `usedSpace` bigint(20) DEFAULT '0',
-  `extra1` varchar(100) DEFAULT NULL,
-  `extra2` varchar(100) DEFAULT NULL,
-  `extra3` varchar(100) DEFAULT NULL,
-  `extra4` varchar(100) DEFAULT NULL,
-  `extra5` varchar(100) DEFAULT NULL,
-  PRIMARY KEY (`userName`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `user_name` varchar(255) NOT NULL,
+  `app_id` int(11) NOT NULL,
+  `email` varchar(255) DEFAULT NULL,
+  `extra1` varchar(255) DEFAULT NULL,
+  `extra2` varchar(255) DEFAULT NULL,
+  `extra3` varchar(255) DEFAULT NULL,
+  `extra4` varchar(255) DEFAULT NULL,
+  `extra5` varchar(255) DEFAULT NULL,
+  `first_date` datetime DEFAULT NULL,
+  `is_admin` varchar(255) DEFAULT NULL,
+  `last_date` datetime DEFAULT NULL,
+  `max_space` decimal(19,2) DEFAULT NULL,
+  `password` varchar(255) DEFAULT NULL,
+  `phone` varchar(255) DEFAULT NULL,
+  `used_space` decimal(19,2) DEFAULT NULL,
+  `user_cn_name` varchar(255) DEFAULT NULL,
+  `user_flag` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`user_name`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of diskuser
 -- ----------------------------
-INSERT INTO `diskuser` VALUES ('admin', '系统管理员', '1', 'admin', null, 'y', null, null, null, null, null, '0', null, null, null, null, null);
 
 -- ----------------------------
 -- Table structure for `groupuser`
 -- ----------------------------
 DROP TABLE IF EXISTS `groupuser`;
 CREATE TABLE `groupuser` (
-  `groupId` varchar(50) DEFAULT NULL,
-  `userName` varchar(50) DEFAULT NULL
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+  `id` bigint(20) NOT NULL AUTO_INCREMENT,
+  `group_id` varchar(255) DEFAULT NULL,
+  `user_name` varchar(255) DEFAULT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of groupuser
 -- ----------------------------
 
 -- ----------------------------
+-- Table structure for `hibernate_sequence`
+-- ----------------------------
+DROP TABLE IF EXISTS `hibernate_sequence`;
+CREATE TABLE `hibernate_sequence` (
+  `next_val` bigint(20) DEFAULT NULL
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
+
+-- ----------------------------
+-- Records of hibernate_sequence
+-- ----------------------------
+INSERT INTO `hibernate_sequence` VALUES ('1');
+INSERT INTO `hibernate_sequence` VALUES ('1');
+INSERT INTO `hibernate_sequence` VALUES ('1');
+INSERT INTO `hibernate_sequence` VALUES ('1');
+INSERT INTO `hibernate_sequence` VALUES ('1');
+
+-- ----------------------------
 -- Table structure for `history`
 -- ----------------------------
 DROP TABLE IF EXISTS `history`;
 CREATE TABLE `history` (
-  `id` int(11) NOT NULL,
-  `userName` varchar(50) NOT NULL,
-  `fileName` varchar(100) DEFAULT NULL,
-  `operation` varchar(50) NOT NULL,
-  `groupName` varchar(100) DEFAULT NULL,
+  `id` bigint(20) NOT NULL,
+  `extra1` varchar(255) DEFAULT NULL,
+  `extra2` varchar(255) DEFAULT NULL,
+  `extra3` varchar(255) DEFAULT NULL,
+  `extra4` varchar(255) DEFAULT NULL,
+  `extra5` varchar(255) DEFAULT NULL,
+  `file_name` varchar(255) DEFAULT NULL,
+  `group_name` varchar(255) DEFAULT NULL,
+  `operation` varchar(255) DEFAULT NULL,
   `time` datetime DEFAULT NULL,
-  `extra1` varchar(100) DEFAULT NULL,
-  `extra2` varchar(100) DEFAULT NULL,
-  `extra3` varchar(100) DEFAULT NULL,
-  `extra4` varchar(100) DEFAULT NULL,
-  `extra5` varchar(100) DEFAULT NULL,
+  `user_name` varchar(255) DEFAULT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+) ENGINE=MyISAM DEFAULT CHARSET=utf8;
 
 -- ----------------------------
 -- Records of history
