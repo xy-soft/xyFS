@@ -25,6 +25,8 @@ import xy.FileSystem.Propert.StorageProperties;
 public class FileSystemStorageService implements StorageService {
 
     private final Path rootLocation;
+    @Autowired
+    private StorageProperties prop;
 
     @Autowired
     public FileSystemStorageService(StorageProperties properties) {
@@ -32,8 +34,13 @@ public class FileSystemStorageService implements StorageService {
     }
 
     @Override
-    public void store(MultipartFile file) {
-        String filename = StringUtils.cleanPath(file.getOriginalFilename());
+    public void store(MultipartFile file,String fileName) {
+    	String filename = StringUtils.cleanPath(file.getOriginalFilename());
+    	
+    	if (prop.isRename()){
+    		filename = fileName;
+    	}
+        
         try {
             if (file.isEmpty()) {
                 throw new StorageException("Failed to store empty file " + filename);
@@ -105,4 +112,10 @@ public class FileSystemStorageService implements StorageService {
             throw new StorageException("Could not initialize storage", e);
         }
     }
+
+	@Override
+	public void store(MultipartFile file) {
+		// TODO Auto-generated method stub
+		
+	}
 }

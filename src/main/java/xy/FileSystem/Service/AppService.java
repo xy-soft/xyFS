@@ -7,6 +7,4 @@ public class AppService {
 	
 	public static AppService context;
 
-	
-
 }

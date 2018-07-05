@@ -10,15 +10,14 @@ xyTalk地址：https://gitee.com/475660/xyTalk-pc
 xyFS不仅仅是独立可用的文件系统，还通过接口灵活集成以下服务：
 
 - 1.私有Xy.File OSS-FS文件服务 （自主开发，免费开源） 
-- 2.私有企业云存储：Seafile网盘 
+- 2.私有分布式文件：MongoDB GridFS分布式文件系统 
 - 3.私有分布式文件：FastDFS文件系统 
-- 4.私有分布式文件：MongoDB GridFS分布式文件系统 
-- 5.私有分布式文件：百度文件系统 BFS  
-- 6.私有分布式文件：微信后台分布式存储数据库 PaxosStore 
-- 7.私有BASE64转存关系数据库存储（停用） 
-- 8.公有云存储：阿里OSS云存储 
-- 9.公有云存储：七牛云 
-- 10.公有云存储：腾讯文件云存储 CFS 
+- 4.私有分布式文件：SeaweedFS 
+- 5.私有企业云存储：Seafile网盘 
+- 6.私有BASE64转存关系数据库存储（停用） 
+- 7.公有云存储：阿里OSS云存储 
+- 8.公有云存储：七牛云 
+- 9.公有云存储：腾讯文件云存储 CFS 
 
 #### 项目详细文档
 
@@ -35,7 +34,7 @@ http://xyfs.mydoc.io/
 
 #### 采用技术
 
-- 1.Spring Boot、MVC、AOP
+- 1.Spring Boot、MVC、AOP、Actuator、Swagger
 - 2.Dbcp2/Druid
 - 3.JPA/Hibernate
 - 4.Ehcache

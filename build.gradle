@@ -28,14 +28,28 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-web")
     compile("org.springframework.boot:spring-boot-starter-data-jpa")
     compile("org.springframework.boot:spring-boot-starter-cache")
-    compile("org.springframework.boot:spring-boot-starter-data-rest")
+    compile("org.springframework.boot:spring-boot-starter-data-rest")   
     compile("org.springframework.boot:spring-boot-devtools")
+    compile("org.springframework.boot:spring-boot-starter-actuator")
     
     compile 'mysql:mysql-connector-java'
     
     compile group: 'org.apache.commons', name: 'commons-dbcp2', version: '2.4.0'
     compile group: 'com.alibaba', name: 'druid', version: '1.1.10'
-
+	compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.23.1'
+	compile group: 'com.enigmabridge', name: 'hibernate4-sqlite-dialect', version: '0.1.2'
+	compile group: 'com.qiniu', name: 'qiniu-java-sdk', version: '7.2.13'
+	compile group: 'com.google.code.gson', name: 'gson', version: '2.8.5'
+	compile group: 'com.qiniu', name: 'happy-dns-java', version: '0.1.6'
+	compile group: 'com.squareup.okhttp3', name: 'okhttp', version: '3.10.0'
+	compile group: 'com.squareup.okio', name: 'okio', version: '1.14.1'
+	compile group: 'org.apache.httpcomponents', name: 'httpcore', version: '4.4.10'
+	compile group: 'commons-logging', name: 'commons-logging', version: '1.2'
+	compile group: 'commons-codec', name: 'commons-codec', version: '1.11'	
+	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.5'
+	compile group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.5.5'
+	compile group: 'org.mongodb', name: 'mongo-java-driver', version: '3.8.0'
+	
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile('com.jayway.jsonpath:json-path')
     testCompile("org.apache.httpcomponents:httpclient")

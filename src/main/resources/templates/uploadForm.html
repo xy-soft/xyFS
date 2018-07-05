@@ -8,7 +8,10 @@
 	<div>
 		<form method="POST" enctype="multipart/form-data" action="/">
 			<table>
-				<tr><td>File to upload:</td><td><input type="file" name="file" /></td></tr>
+			<input type="hidden" name="appid" value="100" />
+			<input type="hidden" name="username" value="wangxin" />
+			<input type="hidden" name="groupid" value="" />
+				<tr><td>upload:</td><td><input type="file" name="file" /></td></tr>
 				<tr><td></td><td><input type="submit" value="Upload" /></td></tr>
 			</table>
 		</form>

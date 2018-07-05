@@ -20,4 +20,6 @@ public interface StorageService {
 
     void deleteAll();
 
+	void store(MultipartFile file, String fileName);
+
 }

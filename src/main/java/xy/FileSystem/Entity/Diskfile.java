@@ -58,6 +58,79 @@ public class Diskfile implements Serializable {
 	private String groupName;
 
 	private String ispublic;
+	private String urldisk;
+	private String urlqiniu;
+	private String urlfastdfs;
+	private String urlmongodb;
+	private String urlbfs;
+	private String urlpaxossurlre;
+	private String urlalioss;
+	
+	private String urlcfs;
+	
+	public String getUrldisk() {
+		return urldisk;
+	}
+
+	public void setUrldisk(String urldisk) {
+		this.urldisk = urldisk;
+	}
+
+	public String getUrlqiniu() {
+		return urlqiniu;
+	}
+
+	public void setUrlqiniu(String urlqiniu) {
+		this.urlqiniu = urlqiniu;
+	}
+
+	public String getUrlfastdfs() {
+		return urlfastdfs;
+	}
+
+	public void setUrlfastdfs(String urlfastdfs) {
+		this.urlfastdfs = urlfastdfs;
+	}
+
+	public String getUrlmongodb() {
+		return urlmongodb;
+	}
+
+	public void setUrlmongodb(String urlmongodb) {
+		this.urlmongodb = urlmongodb;
+	}
+
+	public String getUrlbfs() {
+		return urlbfs;
+	}
+
+	public void setUrlbfs(String urlbfs) {
+		this.urlbfs = urlbfs;
+	}
+
+	public String getUrlpaxossurlre() {
+		return urlpaxossurlre;
+	}
+
+	public void setUrlpaxossurlre(String urlpaxossurlre) {
+		this.urlpaxossurlre = urlpaxossurlre;
+	}
+
+	public String getUrlalioss() {
+		return urlalioss;
+	}
+
+	public void setUrlalioss(String urlalioss) {
+		this.urlalioss = urlalioss;
+	}
+
+	public String getUrlcfs() {
+		return urlcfs;
+	}
+
+	public void setUrlcfs(String urlcfs) {
+		this.urlcfs = urlcfs;
+	}
 
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date uploadDate;
