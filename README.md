@@ -89,9 +89,8 @@ storage.tocfs = false
 storage.downloadfrom = xyfs
 
 
-<div id="show_2"></div>
-			<textarea data-index="2" class="noshow">全部配置：</textarea>
-			<pre><code class='java'># tomcat服务端口         #
+### 全部配置：
+<pre><code># tomcat服务端口         #
 server.port=9091
 #启用shutdown
 endpoints.sensitive=false
@@ -211,4 +210,3 @@ spring.servlet.multipart.max-request-size=1024MB
 # oss 日志配置       #
 logging.config=classpath:logback.xml
 </code></pre>
-			</div>
