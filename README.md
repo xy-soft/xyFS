@@ -44,23 +44,47 @@ http://xyfs.mydoc.io/
 - 8.Gradle
 - 9.Nginx
 
-#### 安装教程
+#### 安装、使用教程
 
-- 1. 
+- 1、Import Gradle Project；
+- 2、点击工程，右键Gradle>>Refresh Gradle Project；
+- 3、选择Gradle Task栏，点击“bootRun”；
+- 4、如果出现以下信息，说明运行时环境已经完成：
+<br>
+2018-07-09 16:06:56,790 INFO (TomcatWebServer.java:206)- Tomcat started on port(s): 9091 (http) with context path ''
+<br>
+2018-07-09 16:06:56,794 INFO (StartupInfoLogger.java:59)- Started FileSystemApplication in 14.575 seconds (JVM running for 15.457)
+<br>
+2018-07-09 16:07:18,809 INFO (DirectJDKLog.java:180)- Initializing Spring FrameworkServlet 'dispatcherServlet'
+<br>
+这时就可以使用啦，访问：
+<br>
+http://localhost:9091/
+<br>
+如要了解Gradle编译和运行更多事宜，请访问Spring Boot官网文章：Building Java Projects with Gradle
+地址：https://spring.io/guides/gs/gradle/
 
-#### 使用说明
+### 开发配置
+可以在配置文件application.properties里修改属性
 
-- 1. 
+例如
+tomcat服务端口
+server.port=9091
 
+是否重新命名文件名，如果是个人文件则重命名为：username_ + 原文件名；如果是群组文件则重命名为：groupid_ + 原文件名     
+storage.rename = true
 
+存储源.可多选.可以同时储存多个数据源,便于备份      
+类型有：xyfs\\Seafile\\FastDFS\\SeaweedFS\\MongoDB\\aliOSS\\qiniu\\CFS        
+storage.todisk = true  
+storage.toqiniu = true
+storage.tofastdfs = false
+storage.tomongodb = false
+storage.toseaweedfs = false
+storage.toalioss = false
+storage.tocfs = false
 
-#### 码云特技
+设置下载的源 ,单选  
+类型有：xyfs\\Seafile\\FastDFS\\SeaweedFS\\MongoDB\\aliOSS\\qiniu\\CFS       
+storage.downloadfrom = xyfs
 
-
-
-- 1. 使用 Readme\_XXX.md 来支持不同的语言，例如 Readme\_en.md, Readme\_zh.md
-- 2. 码云官方博客 [blog.gitee.com](https://blog.gitee.com)
-- 3. 你可以 [https://gitee.com/explore](https://gitee.com/explore) 这个地址来了解码云上的优秀开源项目
-- 4. [GVP](https://gitee.com/gvp) 全称是码云最有价值开源项目，是码云综合评定出的优秀开源项目
-- 5. 码云官方提供的使用手册 [http://git.mydoc.io/](http://git.mydoc.io/)
-- 6. 码云封面人物是一档用来展示码云会员风采的栏目 [https://gitee.com/gitee-stars/](https://gitee.com/gitee-stars/)
