@@ -55,25 +55,27 @@ http://xyfs.mydoc.io/
 <br>
 2018-07-09 16:06:56,794 INFO (StartupInfoLogger.java:59)- Started FileSystemApplication in 14.575 seconds (JVM running for 15.457)
 <br>
+2018-07-09 16:07:18,809 INFO (DirectJDKLog.java:180)- Initializing Spring FrameworkServlet 'dispatcherServlet'
+<br>
 这时就可以使用啦，访问：
 <br>
 http://localhost:9091/
 <br>
 <textarea data-index="2" class="noshow">调试窗口：</textarea>
-			<p>
+			<p><img src="https://static.oschina.net/uploads/space/2018/0709/164132_owlC_160997.png"/></p>
+<br>
 2018-07-09 16:35:15,725 INFO (StartupInfoLogger.java:59)- Started FileSystemApplication in 14.116 seconds (JVM running for 15.16)
-2018-07-09 16:35:30,184 INFO (DirectJDKLog.java:180)- Initializing Spring FrameworkServlet 'dispatcherServlet'
-2018-07-09 16:35:30,184 INFO (FrameworkServlet.java:494)- FrameworkServlet 'dispatcherServlet': initialization started
-2018-07-09 16:35:30,221 INFO (FrameworkServlet.java:509)- FrameworkServlet 'dispatcherServlet': initialization completed in 37 ms
-UsesCache.files:1000000
-UsesCache.usedspace:1.0E9
-qiniu upload:wangxin_muc2.png
-UsesCache.files:1000001
-UsesCache.usedspace:1.000073069E9
-#########################
-qiniu upload success,download url:http://pbby0yzdu.bkt.clouddn.com/wangxin_muc2.png
-#########################
-</p>
+<br>2018-07-09 16:35:30,184 INFO (DirectJDKLog.java:180)- Initializing Spring FrameworkServlet 'dispatcherServlet'
+<br>2018-07-09 16:35:30,184 INFO (FrameworkServlet.java:494)- FrameworkServlet 'dispatcherServlet': initialization started
+<br>2018-07-09 16:35:30,221 INFO (FrameworkServlet.java:509)- FrameworkServlet 'dispatcherServlet': initialization completed in 37 ms
+<br>UsesCache.files:1000000
+<br>UsesCache.usedspace:1.0E9
+<br>qiniu upload:wangxin_muc2.png
+<br>UsesCache.files:1000001
+<br>UsesCache.usedspace:1.000073069E9
+<br>#########################
+<br>qiniu upload success,download url:http://pbby0yzdu.bkt.clouddn.com/wangxin_muc2.png
+<br>#########################
 			
 <br>
 如要了解Gradle编译和运行更多事宜，请访问Spring Boot官网文章：Building Java Projects with Gradle
