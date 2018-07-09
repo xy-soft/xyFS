@@ -88,3 +88,127 @@ storage.tocfs = false
 类型有：xyfs\\Seafile\\FastDFS\\SeaweedFS\\MongoDB\\aliOSS\\qiniu\\CFS       
 storage.downloadfrom = xyfs
 
+
+<div id="show_2"></div>
+			<textarea data-index="2" class="noshow">全部配置：</textarea>
+			<pre><code class='java'># tomcat服务端口         #
+server.port=9091
+#启用shutdown
+endpoints.sensitive=false
+
+# 存储的相对路径，如果 storage.source = xyfs 需要配置        #
+storage.location = uploadfiledir
+
+# 是否重新命名文件名，如果是个人文件则重命名为：username_ + 原文件名；如果是群组文件则重命名为：groupid_ + 原文件名     #
+storage.rename = true
+
+# 存储源.可多选.可以同时储存多个数据源,便于备份      #
+# 类型有：xyfs\\Seafile\\FastDFS\\SeaweedFS\\MongoDB\\aliOSS\\qiniu\\CFS        #
+storage.todisk = true  
+storage.toqiniu = true
+storage.tofastdfs = false
+storage.tomongodb = false
+storage.toseaweedfs = false
+storage.toalioss = false
+storage.tocfs = false
+
+# 用于设置下载的源 ,单选   #
+# 类型有：xyfs\\Seafile\\FastDFS\\SeaweedFS\\MongoDB\\aliOSS\\qiniu\\CFS        #
+storage.downloadfrom = xyfs
+
+# xyfs存储配置     #
+storage.diskprefix = http://localhost:9091/files/
+
+# 七牛存储配置     #
+storage.qiniuprefix = http://pbby0yzdu.bkt.clouddn.com/
+storage.qiniuak = _IAafy8aX5x7h-4FBEvH2DqCtTq2c7sESPSlfG
+storage.qiniusk = _8hy2LE6kfTKr3wDUWJONgFRxPKX4cDQhi79Bj
+storage.qiniubucket = xytalk
+
+# mongodb.gridfs配置     #
+storage.gridfshost = 127.0.0.1
+storage.gridfsdbname = xyfs
+storage.gridfsport = 27017
+storage.gridfscollectionname = fs
+
+# fastDFS 配置     #
+storage.fastdfsconnecttimeout = 5
+storage.fastdfsnetwork_timeout = 10
+storage.fastdfscharset = UTF-8
+storage.fastdfstrackerhttpport = 80
+storage.fastdfsantistealtoken = no
+storage.fastdfssecret_key = 1234567890
+storage.fastdfstrackerserver = 192.168.17.112:22122
+
+# SeaweedFS 配置     #
+storage.seaweedfshost = localhost
+storage.seaweedfsport = 9333
+storage.seaweedfstimeout = 10
+
+# ali OSS 配置     #
+storage.aliendpoint = ""
+storage.aliaccesskeyid  = ""
+storage.aliaccesskeysecret = ""
+storage.alibucketname  = ""
+storage.alidownloadkey  = ""
+
+# 第一次使用的配置：自动创建数据库表，如果是运行SQL脚本则无需使用此配置         #
+# spring.jpa.hibernate.ddl-auto = create
+# 第二次开始使用的配置：据库表会根据Entity的变动而更新         #
+ spring.jpa.hibernate.ddl-auto = update 
+
+# Sqlite数据源        #
+spring.datasource.driver-class-name=org.sqlite.JDBC
+spring.datasource.url=jdbc:sqlite:DbSqlite/xyfs.db
+spring.datasource.platform=sqlite
+spring.jpa.database-platform= xy.FileSystem.Dialect.SQLiteDialect
+
+# mysql数据源         #
+#spring.datasource.url=jdbc:mysql://localhost:3306/xyfs
+#spring.datasource.username=root
+#spring.datasource.password=mysql
+
+# oracle数据源         #
+#spring.datasource.driver-class-name=oracle.jdbc.driver.OracleDriver
+#spring.datasource.url=jdbc:oracle:thin:@127.0.0.1:1521:torcl
+#spring.datasource.username=center
+#spring.datasource.password=centerDB12345
+
+# dbcp2连接池配置       #
+spring.datasource.type=org.apache.commons.dbcp2.BasicDataSource
+spring.datasource.dbcp2.max-wait-millis=10000
+spring.datasource.dbcp2.min-idle=5
+spring.datasource.dbcp2.initial-size=5
+spring.datasource.dbcp2.validation-query=SELECT 1 FROM app
+spring.datasource.dbcp2.connection-properties=characterEncoding=utf8
+
+# druid连接池的配置信息       #
+#spring.datasource.type=com.alibaba.druid.pool.DruidDataSource
+#spring.datasource.initialSize=5
+#spring.datasource.minIdle=5
+#spring.datasource.maxActive=20
+#spring.datasource.maxWait=60000
+#spring.datasource.timeBetweenEvictionRunsMillis=60000
+#spring.datasource.minEvictableIdleTimeMillis=300000
+#spring.datasource.validationQuery=SELECT 1 FROM App
+#spring.datasource.testWhileIdle=true
+#spring.datasource.testOnBorrow=false
+#spring.datasource.testOnReturn=false
+#spring.datasource.poolPreparedStatements=true
+#spring.datasource.maxPoolPreparedStatementPerConnectionSize=20
+#spring.datasource.filters=stat,wall,log4j
+
+# spring jackson 时间配置         #
+spring.jackson.date-format=yyyy-MM-dd HH:mm:ss
+spring.jackson.joda-date-time-format=yyyy-MM-dd HH:mm:ss
+spring.jackson.time-zone=GMT+8
+
+# multipart 上传配置            #
+spring.servlet.multipart.enabled=true
+spring.servlet.multipart.max-file-size=1024MB
+spring.servlet.multipart.max-request-size=1024MB
+
+# oss 日志配置       #
+logging.config=classpath:logback.xml
+</code></pre>
+			</div>
