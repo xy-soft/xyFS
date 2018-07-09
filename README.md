@@ -57,12 +57,11 @@ http://xyfs.mydoc.io/
 <br>
 2018-07-09 16:07:18,809 INFO (DirectJDKLog.java:180)- Initializing Spring FrameworkServlet 'dispatcherServlet'
 <br>
-这时就可以使用啦，访问：
+这时就可以使用，访问：
 <br>
 http://localhost:9091/
 <br>
-<textarea data-index="2" class="noshow">调试窗口：</textarea>
-			<p><img src="https://static.oschina.net/uploads/space/2018/0709/164132_owlC_160997.png"/></p>
+调试信息类似：
 <br>
 2018-07-09 16:35:15,725 INFO (StartupInfoLogger.java:59)- Started FileSystemApplication in 14.116 seconds (JVM running for 15.16)
 <br>2018-07-09 16:35:30,184 INFO (DirectJDKLog.java:180)- Initializing Spring FrameworkServlet 'dispatcherServlet'
