@@ -2,6 +2,7 @@ package xy.FileSystem.File;
 
 import java.io.Serializable;
 
+//http回调信息
 public class HttpResult implements Serializable{
 
 	private static final long serialVersionUID = 5976014738363051675L;

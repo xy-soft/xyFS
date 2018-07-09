@@ -9,6 +9,8 @@ public class StorageProperties {
 	
 	private boolean rename = true;
 	
+	private String downloadfrom = "";
+	
 	private boolean todisk = true;
 	private boolean toqiniu = true;
 	private boolean tofastdfs = false;
@@ -27,6 +29,81 @@ public class StorageProperties {
 	private String gridfsdbname = "";
 	private String gridfscollectionname = "";
 	
+	private String seaweedfshost = "";
+	private int seaweedfsport = 9333;
+	private int seaweedfstimeout = 5000;
+	
+	private String aliendpoint = "";
+	private String aliaccesskeyid = "";
+	private String aliaccesskeysecret = "";
+	private String alibucketname = "";
+	private String alidownloadkey = "";
+	
+	
+	
+	public String getAliendpoint() {
+		return aliendpoint;
+	}
+
+	public void setAliendpoint(String aliendpoint) {
+		this.aliendpoint = aliendpoint;
+	}
+
+	public String getAliaccesskeyid() {
+		return aliaccesskeyid;
+	}
+
+	public void setAliaccesskeyid(String aliaccesskeyid) {
+		this.aliaccesskeyid = aliaccesskeyid;
+	}
+
+	public String getAliaccesskeysecret() {
+		return aliaccesskeysecret;
+	}
+
+	public void setAliaccesskeysecret(String aliaccesskeysecret) {
+		this.aliaccesskeysecret = aliaccesskeysecret;
+	}
+
+	public String getAlibucketname() {
+		return alibucketname;
+	}
+
+	public void setAlibucketname(String alibucketname) {
+		this.alibucketname = alibucketname;
+	}
+
+	public String getAlidownloadkey() {
+		return alidownloadkey;
+	}
+
+	public void setAlidownloadkey(String alidownloadkey) {
+		this.alidownloadkey = alidownloadkey;
+	}
+
+	public String getSeaweedfshost() {
+		return seaweedfshost;
+	}
+
+	public void setSeaweedfshost(String seaweedfshost) {
+		this.seaweedfshost = seaweedfshost;
+	}
+
+	public int getSeaweedfsport() {
+		return seaweedfsport;
+	}
+
+	public void setSeaweedfsport(int seaweedfsport) {
+		this.seaweedfsport = seaweedfsport;
+	}
+
+	public int getSeaweedfstimeout() {
+		return seaweedfstimeout;
+	}
+
+	public void setSeaweedfstimeout(int seaweedfstimeout) {
+		this.seaweedfstimeout = seaweedfstimeout;
+	}
 	
 	public String getQiniuprefix() {
 		return qiniuprefix;
@@ -162,5 +239,13 @@ public class StorageProperties {
 
 	public void setToseaweedfs(boolean toseaweedfs) {
 		this.toseaweedfs = toseaweedfs;
+	}
+
+	public String getDownloadfrom() {
+		return downloadfrom;
+	}
+
+	public void setDownloadfrom(String downloadfrom) {
+		this.downloadfrom = downloadfrom;
 	}
 }

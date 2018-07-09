@@ -33,7 +33,7 @@ dependencies {
     compile("org.springframework.boot:spring-boot-starter-actuator")
     
     compile 'mysql:mysql-connector-java'
-    
+
     compile group: 'org.apache.commons', name: 'commons-dbcp2', version: '2.4.0'
     compile group: 'com.alibaba', name: 'druid', version: '1.1.10'
 	compile group: 'org.xerial', name: 'sqlite-jdbc', version: '3.23.1'
@@ -49,6 +49,13 @@ dependencies {
 	compile group: 'org.apache.httpcomponents', name: 'httpclient', version: '4.5.5'
 	compile group: 'org.apache.httpcomponents', name: 'httpmime', version: '4.5.5'
 	compile group: 'org.mongodb', name: 'mongo-java-driver', version: '3.8.0'
+	compile group: 'org.lokra.seaweedfs', name: 'seaweedfs-client', version: '0.7.3.RELEASE'
+	compile group: 'com.github.tobato', name: 'fastdfs-client', version: '1.26.2'	
+	compile group: 'com.aliyun.oss', name: 'aliyun-sdk-oss', version: '3.1.0'
+	compile group: 'org.jdom', name: 'jdom', version: '2.0.2'
+	compile group: 'com.aliyun', name: 'aliyun-java-sdk-ram', version: '3.0.0'
+	compile group: 'com.aliyun', name: 'aliyun-java-sdk-sts', version: '3.0.0'
+	compile group: 'com.aliyun', name: 'aliyun-java-sdk-ecs', version: '4.9.2'	
 	
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile('com.jayway.jsonpath:json-path')

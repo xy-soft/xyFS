@@ -35,12 +35,12 @@ http://xyfs.mydoc.io/
 #### 采用技术
 
 - 1.Spring Boot、MVC、AOP、Actuator、Swagger
-- 2.Dbcp2/Druid
+- 2.Dbcp2、Druid，数据库连接池2种模式可选
 - 3.JPA/Hibernate
 - 4.Ehcache
 - 5.HTML、Layer、Bootstrap
 - 6.Tomcat
-- 7.MySQL
+- 7.MySQL、Oracle、SQLite，3种数据库模式可选
 - 8.Gradle
 - 9.Nginx
 
