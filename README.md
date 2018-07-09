@@ -61,6 +61,10 @@ http://xyfs.mydoc.io/
 <br>
 http://localhost:9091/
 <br>
+<textarea data-index="2" class="noshow">调试窗口：</textarea>
+			<p><img src="https://static.oschina.net/uploads/space/2018/0709/164132_owlC_160997.png"/></p>
+			
+<br>
 如要了解Gradle编译和运行更多事宜，请访问Spring Boot官网文章：Building Java Projects with Gradle
 地址：https://spring.io/guides/gs/gradle/
 
