@@ -7,6 +7,7 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.context.properties.EnableConfigurationProperties;
 import org.springframework.context.annotation.Bean;
 import org.springframework.scheduling.annotation.EnableScheduling;
+import org.thymeleaf.dialect.springdata.SpringDataDialect;
 
 import xy.FileSystem.Cache.UsesCache;
 import xy.FileSystem.File.StoreSource;
@@ -25,14 +26,19 @@ public class FileSystemApplication {
 	
 	@Autowired
 	private StorageProperties prop;
+	
 	@Autowired
 	QiniuService qiniuService;
+	
 	@Autowired
 	AliService aliService;
+	
 	@Autowired
 	FastdfsServcice fastdfsServcice;
+	
 	@Autowired
 	MongoService mongoService;
+	
 	@Autowired
 	SeaweedfsService seaweedfsService;
 	
@@ -50,6 +56,11 @@ public class FileSystemApplication {
             
             registerStoreSource();
         };
+    }
+	
+	@Bean
+    public SpringDataDialect springDataDialect() {
+        return new SpringDataDialect();
     }
 
 	public void registerStoreSource() {

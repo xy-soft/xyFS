@@ -60,13 +60,13 @@ public class AliService implements FileListener{
 		OSS ossClient = init();
 		try {
             UploadFileRequest uploadFileRequest = new UploadFileRequest(prop.getAlibucketname(), prop.getAlidownloadkey());
-            // The local file to upload---it must exist.
+            //local file
             uploadFileRequest.setUploadFile(filePath);
-            // Sets the concurrent upload task number to 5.
+            //5线程
             uploadFileRequest.setTaskNum(5);
-            // Sets the part size to 1MB.
+            // 切分  1MB.
             uploadFileRequest.setPartSize(1024 * 1024 * 1);
-            // Enables the checkpoint file. By default it's off.
+            // 检查点
             uploadFileRequest.setEnableCheckpoint(true);
             
             UploadFileResult uploadResult = ossClient.uploadFile(uploadFileRequest);
@@ -100,7 +100,7 @@ public class AliService implements FileListener{
 		
 		OSS ossClient = init();
 		try {
-			// 下载请求，10个任务并发下载，启动断点续传。
+			// 下载请求，启动断点续传。
 			DownloadFileRequest downloadFileRequest = new DownloadFileRequest(prop.getAlibucketname(), fileKey);
 			downloadFileRequest.setDownloadFile(localFile);
 			downloadFileRequest.setPartSize(1 * 1024 * 1024);

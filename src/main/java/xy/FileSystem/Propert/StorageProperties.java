@@ -6,11 +6,11 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class StorageProperties {
 
 	private String location = "uploadfiles";
-	
-	private boolean rename = true;
-	
+	private boolean rename = true;	
 	private String downloadfrom = "";
+	private String template = "thymeleaf";
 	
+	private boolean debug = true;
 	private boolean todisk = true;
 	private boolean toqiniu = true;
 	private boolean tofastdfs = false;
@@ -247,5 +247,21 @@ public class StorageProperties {
 
 	public void setDownloadfrom(String downloadfrom) {
 		this.downloadfrom = downloadfrom;
+	}
+
+	public boolean isDebug() {
+		return debug;
+	}
+
+	public void setDebug(boolean debug) {
+		this.debug = debug;
+	}
+
+	public String getTemplate() {
+		return template;
+	}
+
+	public void setTemplate(String template) {
+		this.template = template;
 	}
 }

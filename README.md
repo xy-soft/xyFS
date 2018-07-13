@@ -38,7 +38,8 @@ http://xyfs.mydoc.io/
 - 2.Dbcp2、Druid，数据库连接池2种模式可选
 - 3.JPA/Hibernate
 - 4.Ehcache
-- 5.HTML、Layer、Bootstrap
+- 5.HTML、 Only Bootstrap。只使用了单纯的Bootstrap，不再含任何前端UI框架，纯净、自然、轻量。
+- 6.Thymeleaf/Freemarker，2种模板引擎可切换
 - 6.Tomcat
 - 7.MySQL、Oracle、SQLite，3种数据库模式可选
 - 8.Gradle
@@ -55,7 +56,8 @@ http://xyfs.mydoc.io/
 <br>
 2018-07-09 16:06:56,794 INFO (StartupInfoLogger.java:59)- Started FileSystemApplication in 14.575 seconds (JVM running for 15.457)
 <br>
-2018-07-09 16:07:18,809 INFO (DirectJDKLog.java:180)- Initializing Spring FrameworkServlet 'dispatcherServlet'
+如要了解Gradle编译和运行更多事宜，请访问Spring Boot官网文章：Building Java Projects with Gradle
+地址：https://spring.io/guides/gs/gradle/
 <br>
 这时就可以使用，访问：
 <br>

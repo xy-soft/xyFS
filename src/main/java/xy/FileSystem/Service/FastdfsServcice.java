@@ -17,13 +17,13 @@ public class FastdfsServcice implements FileListener {
 
 	@Override
 	public UploadResult Store(UploadFileExt ufe) {
-		///上传回调
+		//TODO 上传回调
 		return null;
 	}
 
 	@Override
 	public void Download(String fileKeyorName) {
-		// TODO Auto-generated method stub
+		// TODO 下载
 		
 	}
 
