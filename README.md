@@ -42,6 +42,19 @@ http://xyfs.mydoc.io/
 - 7.MySQL、Oracle、SQLite，3种数据库模式可选
 - 8.其他：Gradle、Tomcat、Nginx
 
+#### 截图预览
+首页界面:
+<br>
+<img alt="XyTalk IM" src="http://111.230.157.216/img/index.png" />
+文件管理:
+<br>
+<img alt="XyTalk IM" src="http://111.230.157.216/img/files.png" />
+API管理:
+<br>
+<img alt="XyTalk IM" src="http://111.230.157.216/img/api.png" />
+测试上传:
+<br>
+<img alt="XyTalk IM" src="http://111.230.157.216/img/upload.png" />
 
 #### 安装、使用教程
 
