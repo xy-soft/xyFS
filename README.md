@@ -62,23 +62,17 @@ API管理:
 - 2、点击工程，右键Gradle>>Refresh Gradle Project；
 - 3、运行方法：右键“FileSystemApplication.java”，点击“run as”--“Java App..”。或者选择Gradle Task栏，点击“bootRun”；
 - 4、如果出现以下信息，说明运行时环境已经完成：
+
 <br>
 2018-07-09 16:06:56,794 INFO (StartupInfoLogger.java:59)- Started FileSystemApplication in 14.575 seconds (JVM running for 15.457)
 <br>
 如果出现（Exception opening socket）localhost:27017异常 ，不必惊慌，只是mongodb未安装而已，不影响系统使用。
 <br>
-如要了解Gradle编译和运行更多事宜，请访问Spring Boot官网文章：Building Java Projects with Gradle
-<br>
-地址：https://spring.io/guides/gs/gradle/
-<br>
-这时就可以使用，访问：
+访问：
 <br>
 http://localhost:9091/
 <br>
 			
-<br>
-如要了解Gradle编译和运行更多事宜，请访问Spring Boot官网文章：Building Java Projects with Gradle
-地址：https://spring.io/guides/gs/gradle/
 
 ### 开发配置
 可以在配置文件application.properties里修改属性
