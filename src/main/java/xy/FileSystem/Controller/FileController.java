@@ -38,7 +38,33 @@ public class FileController {
 	@Autowired
 	private StorageProperties prop;
 	
+	//首页
+	@GetMapping("/index")
+	public String index(ModelMap model){
+			
+			return "file/"+prop.getTemplate()+"/index";
+	}
+	
+	@GetMapping("/empty")
+	public String emptypage(ModelMap model){
+			
+			return "file/"+prop.getTemplate()+"/empty";
+	}
+	
+	
+	
+		
+	//全部文件的列表，自动分页
 	@GetMapping("/all")
+	public String list(ModelMap model, Pageable pageable){
+
+		model.addAttribute("page", repository.findAll(pageable));
+		
+		return "file/"+prop.getTemplate()+"/allfilebyauto";
+	}
+	
+	//手动分页
+	@GetMapping("/all_ManualPaging")
 	public ModelAndView getAll(@RequestParam("pageSize") Optional<Integer> pageSize,
 			@RequestParam("page") Optional<Integer> page){
 				
@@ -64,13 +90,7 @@ public class FileController {
 		
 	}
 	
-	@GetMapping("/allfilebyauto")
-	public String list(ModelMap model, Pageable pageable){
-
-		model.addAttribute("page", repository.findAll(pageable));
-		
-		return "file/"+prop.getTemplate()+"/allfilebyauto";
-	}
+	
 	
 	@RequestMapping(value = "/findallsort", method=RequestMethod.GET)
 	public Page<Diskfile> getEntryByPageable(@PageableDefault(value = 15, sort = { "fileid" }, direction = Sort.Direction.DESC) 

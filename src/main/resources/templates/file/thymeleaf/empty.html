@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sd="http://io.github.jpenren/sd">
+	
+<head th:include="head::header" />
+    <script th:src="@{~/js/require.min.js}"></script>
+    <script>
+      requirejs.config({
+          baseUrl: '.'
+      });
+    </script>
+<body>
+
+<header >
+<div th:replace="menu::menu">
+</div>
+</header>
+
+
+<!-- 页面主体  Start -->
+        <div class="my-3 my-md-5">
+          <div class="container">
+
+
+开发中......
+
+
+        </div>
+      </div>
+<!-- 页面主体  End -->
+      
+      
+
+
+<!-- PAGE FOOT -->
+
+<footer  class="footer">
+<div th:replace="foot::footer">
+</div>
+</footer>
+
+
+
+</body>
+</html>

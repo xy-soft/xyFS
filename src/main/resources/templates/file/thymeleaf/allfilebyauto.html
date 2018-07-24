@@ -1,47 +1,59 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:sd="http://io.github.jpenren/sd">
-<head>
-<title>xyFS私有文件云存储OSS服务</title>
-<!-- Latest compiled and minified CSS -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css" >
-<!-- Optional theme -->
-<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap-theme.min.css">
-</head>
+	
+<head th:include="head::header" />
+    <script th:src="@{~/js/require.min.js}"></script>
+    <script>
+      requirejs.config({
+          baseUrl: '.'
+      });
+    </script>
 <body>
 
+<header >
+<div th:replace="menu::menu">
+</div>
+</header>
 
-<div class="container">
-<!-- START PAGE SIDEBAR -->
-		<div class="page-header">
-        	<h1>公共页面....</h1>
-    	</div>
-<!-- END PAGE SIDEBAR -->
-    	
+<div class="container"> 	
+    	    	
+<div class="my-3 my-md-5">
+  <div class="container">
+   	
 <!-- PAGE TITLE -->
 		<div class="page-title">
-			<h2>
+			<h3>
 				<span class="fa fa-arrow-circle-o-left"></span> 文件清单
-			</h2>
+			</h3>
 		</div>
 <!-- PAGE TITLE END-->		
 		
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
-			  <th><a class="sorted" sd:pagination-sort="username" >Username</a></th>
-			  <th><a class="sorted" sd:pagination-sort="firstName" >First name</a></th>
-			  <th>Last Name</th>
+			  <th><a class="sorted" sd:pagination-sort="username" >文件ID</a></th>
+			  <th><a >文件名</a></th>
+			  <th>大小(KB)</th>
+			  <th>OSS下载</th>
+			  <th>云端下载</th>
 			</tr>
 		</thead>
 		<tbody>
 			<tr th:each="row : ${page}">
-			  <th scope="row" th:text="${row.fileid}">Username</th>
-			  <td th:text="${row.fileName}">Name</td>
-			  <td ><button type="button"
-								class="btn btn-primary btn-condensed">
-								<i class="glyphicon glyphicon-folder-open"></i>
-							</button></td>
+			  <th scope="row" th:text="${row.fileid}"></th>
+			  <td th:text="${row.fileName}"></td>
+			  <td th:text="${row.fileSize}"></td>
+			  <td >
+			  <button type="button"	class="btn btn-primary btn-condensed">
+					<i class="fe fe-download"></i>
+			  </button>
+			  </td>
+			  <td >
+			  <button type="button"	class="btn btn-primary btn-condensed">
+					<i class="fe fe-download-cloud"></i>
+			  </button>
+			  </td>
 			</tr>
 		</tbody>
 	</table>
@@ -65,16 +77,16 @@
 
 
 </div>
+</div>
+</div>
 <!-- PAGE FOOT -->
-		<footer class="footer">
-		    <div class="container">
-		        <p class="text-muted">©2016-2019 昕有灵犀</p>
-		    </div>
-		</footer>
-<!-- PAGE FOOT END -->
-<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
-<!-- Latest compiled and minified JavaScript -->
-<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+
+<footer  class="footer">
+<div th:replace="foot::footer">
+</div>
+</footer>
+
+
 
 </body>
 </html>

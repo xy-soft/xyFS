@@ -1,0 +1,326 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:sd="http://io.github.jpenren/sd">
+	
+<head th:include="head::header" />
+    <script th:src="@{~/js/require.min.js}"></script>
+    <script>
+      requirejs.config({
+          baseUrl: '.'
+      });
+    </script>
+<body>
+
+<header >
+<div th:replace="menu::menu">
+</div>
+</header>
+
+<div class="container"> 	
+    	
+
+
+<!-- 页面主体  Start -->
+        <div class="my-3 my-md-5">
+          <div class="container">
+            <!-- <div class="page-header">
+              <h1 class="page-title">
+                Dashboard
+              </h1>
+            </div> -->
+
+<!-- 4个一行的icon item  Start -->
+            <div class="row row-cards">
+              
+              <!-- 第1项 -->
+              <div class="col-sm-6 col-lg-3">
+                <div class="card p-3">
+                  <div class="d-flex align-items-center">
+                    <span class="stamp stamp-md bg-blue mr-3">
+                      <i class="fe fe-users"></i>
+                    </span>
+                    <div>
+                      <h4 class="m-0"><a href="javascript:void(0)">26 <small>MUC组</small></a></h4>
+                      <small class="text-muted">385 组文件</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+			  <!-- 第2项 -->
+              <div class="col-sm-6 col-lg-3">
+                <div class="card p-3">
+                  <div class="d-flex align-items-center">
+                    <span class="stamp stamp-md bg-green mr-3">
+                      <i class="fe fe-package"></i>
+                    </span>
+                    <div>
+                      <h4 class="m-0"><a href="javascript:void(0)">78 <small>App应用</small></a></h4>
+                      <small class="text-muted">32 今天使用</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- 第3项 -->
+              <div class="col-sm-6 col-lg-3">
+                <div class="card p-3">
+                  <div class="d-flex align-items-center">
+                    <span class="stamp stamp-md bg-red mr-3">
+                      <i class="fe fe-user"></i>
+                    </span>
+                    <div>
+                      <h4 class="m-0"><a href="javascript:void(0)">1,352 <small>个人文件</small></a></h4>
+                      <small class="text-muted">163 今天上传</small>
+                    </div>
+                  </div>
+                </div>
+              </div>
+			  <!-- 第4项 -->
+              <div class="col-sm-6 col-lg-3">
+                <div class="card p-3">
+                  <div class="d-flex align-items-center">
+                    <span class="stamp stamp-md bg-yellow mr-3">
+                      <i class="fe fe-download"></i>
+                    </span>
+                    <div>
+                      <h4 class="m-0"><a href="javascript:void(0)">132 <small>下载</small></a></h4>
+                      <small class="text-muted">16 今天下载</small>
+                    </div>
+                  </div>
+                </div>
+				<!-- 第4项 End-->
+              </div>
+<!-- 4个一行的icon item  End -->
+
+
+<!-- 3个一行的card  Start -->
+<!-- 第1个 -->
+              <div class="col-sm-6 col-lg-4">
+                <div class="card">
+
+                  <div class="card-header">
+                    <h4 class="card-title ">应用管理</h4>
+					<div class="card-options">
+						<a href="#" class="btn btn-primary btn-sm">管理</a>
+					 </div>
+                  </div>
+
+                  <table class="table card-table">
+                    <tr>
+                      <td><a href="#" >xyTalk</a></td>
+                      <td class="text-right">
+                        <span class="text-muted">2018-07-25</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><a href="#" >新一代信贷系统</a></td>
+                      <td class="text-right">
+                        <span class="text-muted">2018-06-16</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><a href="#" >个人网盘</a></td>
+                      <td class="text-right">
+                        <span class="text-muted">2018-05-18</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><a href="#" >小微贷App</a></td>
+                      <td class="text-right">
+                       <span class="text-muted">2018-04-12</span>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+
+               <!-- 第2个 -->
+              <div class="col-sm-6 col-lg-4">
+                <div class="card">
+
+                  <div class="card-header">
+                    <h4 class="card-title ">群组管理</h4>
+					<div class="card-options">
+						<a href="#" class="btn btn-primary btn-sm">管理</a>
+					 </div>
+                  </div>
+
+                  <table class="table card-table">
+                    <tr>
+                      <td><a href="#" >项目管理</a></td>
+                      <td class="text-right">
+                        <span class="text-muted">2018-07-16</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><a href="#" >人力资源群</a></td>
+                      <td class="text-right">
+                        <span class="text-muted">2018-06-23</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><a href="#" >营销知识分享</a></td>
+                      <td class="text-right">
+                        <span class="text-muted">2018-05-21</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><a href="#" >外勤群</a></td>
+                      <td class="text-right">
+                       <span class="text-muted">2018-04-11</span>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+
+			  <!-- 第3个 -->
+              <div class="col-sm-6 col-lg-4">
+                <div class="card">
+
+                  <div class="card-header">
+                    <h4 class="card-title ">日志</h4>
+					<div class="card-options">
+						<a href="#" class="btn btn-primary btn-sm">管理</a>
+					 </div>
+                  </div>
+
+                  <table class="table card-table">
+                    <tr>
+                      <td><i class="fe fe-x-circle"></i> &nbsp;<a href="#" >07-16-ERRORLOG</a></td>
+                      <td class="text-right">
+                        <span class="text-muted">2018-07-16</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><i class="fe fe-settings"></i> &nbsp;<a href="#" >07-16-SYSLOG</a></td>
+                      <td class="text-right">
+                        <span class="text-muted">2018-07-16</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><i class="fe fe-x-circle"></i> &nbsp;<a href="#" >07-15-ERRORLOG</a></td>
+                      <td class="text-right">
+                        <span class="text-muted">2018-07-15</span>
+                      </td>
+                    </tr>
+                    <tr>
+                      <td><i class="fe fe-settings"></i> &nbsp;<a href="#" >07-15-SYSLOG</a></td>
+                      <td class="text-right">
+                       <span class="text-muted">2018-07-15</span>
+                      </td>
+                    </tr>
+                  </table>
+                </div>
+              </div>
+
+<!-- 3个一行的card  End -->
+
+              <div class="col-12">
+                <div class="card">
+                  <div class="card-header">
+                    <h3 class="card-title">文件记录</h3>
+					<div class="card-options">
+						<a href="#" class="btn btn-primary btn-sm">管理</a>
+					 </div>
+                  </div>
+                  <div class="table-responsive">
+                    <table class="table card-table table-vcenter text-nowrap">
+                      <thead>
+                        <tr>
+                          <th class="w-1">文件名</th>
+                          <th>App</th>
+                          <th>大小</th>
+                          <th>上传时间</th>
+                          <th>类型</th>
+                          <th>下载通道</th>
+                        </tr>
+                      </thead>
+                      <tbody>
+                        <tr>
+                          <td>xyTalk业务需求概要书-V1.pptx</td>
+                          <td>
+                            001001
+                          </td>
+                          <td>
+                            6,621KB
+                          </td>
+                          <td>
+                            2018-07-19 15:14:53
+                          </td>
+                          <td>
+                            pptx
+                          </td>
+                          <td>
+						  <a href="javascript:void(0)" class="btn btn-secondary btn-sm">阿里</a>
+						  <a href="javascript:void(0)" class="btn btn-secondary btn-sm">SeaweedFS</a>
+						  </td>
+                        </tr>
+                        
+						<tr>
+                          <td>移动考勤评估表.xlsx</td>
+                          <td>
+                            001001
+                          </td>
+                          <td>
+                            7,956KB
+                          </td>
+                          <td>
+                            2018-07-16 08:34:54
+                          </td>
+                          <td>
+                            xlsx
+                          </td>
+                          <td>
+						  <a href="javascript:void(0)" class="btn btn-secondary btn-sm">七牛</a>
+						  <a href="javascript:void(0)" class="btn btn-secondary btn-sm">FastDFS</a>
+						 
+							</td>
+                        </tr>
+						
+						<tr>
+                          <td>15日上线人力系统适配计划工作项.xlsx</td>
+                          <td>
+                            001001
+                          </td>
+                          <td>
+                            653KB
+                          </td>
+                          <td>
+                            2018-07-12 11:23:32
+                          </td>
+                          <td>
+                            xlsx
+                          </td>
+                          <td>
+						  <a href="javascript:void(0)" class="btn btn-secondary btn-sm">xyFS</a>
+						  <a href="javascript:void(0)" class="btn btn-secondary btn-sm">GridFS</a>
+						  <a href="javascript:void(0)" class="btn btn-secondary btn-sm">七牛</a>
+						  </td>
+                        </tr>
+
+                      </tbody>
+                    </table>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+	  <!-- 页面主体  End -->
+      
+
+
+
+<!-- PAGE FOOT -->
+
+<footer  class="footer">
+<div th:replace="foot::footer">
+</div>
+</footer>
+
+
+
+</body>
+</html>

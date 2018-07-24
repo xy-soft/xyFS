@@ -1,0 +1,90 @@
+<!-- 菜单栏 nav  Start -->
+        <div th:fragment="menu" class="header collapse d-lg-flex p-0" id="headerMenuCollapse">
+          <div class="container">
+            <div class="row align-items-center">
+
+              <div class="col-lg order-lg-first">
+                <ul class="nav nav-tabs border-0 flex-column flex-lg-row">
+				  <li class="nav-item">	<a class="header-brand" href="./index.html">
+						<a class="header-brand" href="./index.html">
+						 <img src="/assets/img/logo.png" class="header-brand-img" alt="xyFS私有文件云存储OSS服务">
+						</a>
+                  </li>
+				  <li class="nav-item">
+                    <a href="/files/index/" class="nav-link "><i class="fe fe-home"></i> 首页</a>
+                  </li>
+				  <li class="nav-item">
+                    <a href="/files" class="nav-link "><i class="fe fe-upload"></i> 上传测试</a>
+                  </li>
+				  <li class="nav-item">
+                    <a href="/api" class="nav-link "><i class="fe fe-cpu"></i> API</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/files/all/" class="nav-link"><i class="fe fe-file"></i> 文件管理</a>
+                  </li>
+                  <li class="nav-item">
+                    <a href="/files/empty/" class="nav-link"><i class="fe fe-calendar"></i>日志 </a>
+                  </li>
+                  <li class="nav-item dropdown">
+                    <a href="/files/empty/" class="nav-link" data-toggle="dropdown"><i class="fe fe-settings"></i> 系统设置</a>
+                    <div class="dropdown-menu dropdown-menu-arrow">
+                      <a href="./profile.html" class="dropdown-item ">Profile</a>
+                      <a href="./login.html" class="dropdown-item ">Login</a>
+                      <a href="./register.html" class="dropdown-item ">Register</a>
+                      <a href="./forgot-password.html" class="dropdown-item ">Forgot password</a>
+                      <a href="./400.html" class="dropdown-item ">400 error</a>
+                      <a href="./401.html" class="dropdown-item ">401 error</a>
+                      <a href="./403.html" class="dropdown-item ">403 error</a>
+                      <a href="./404.html" class="dropdown-item ">404 error</a>
+                      <a href="./500.html" class="dropdown-item ">500 error</a>
+                      <a href="./503.html" class="dropdown-item ">503 error</a>
+                      <a href="./email.html" class="dropdown-item ">Email</a>
+                      <a href="./empty.html" class="dropdown-item ">Empty page</a>
+                      <a href="./rtl.html" class="dropdown-item ">RTL mode</a>
+                    </div>
+                  </li>
+
+                </ul>
+              </div>
+
+			   <div class="d-flex order-lg-2 ml-auto">
+			   <div class="nav-item d-none d-md-flex">
+                  <a href="https://gitee.com/475660/xyFS" class="btn btn-sm btn-outline-primary" target="_blank">Source code</a>
+                </div>
+			   <div class="dropdown">
+					  <a href="#" class="nav-link pr-0 leading-none" data-toggle="dropdown">
+						<span class="avatar" style="background-image: url(/assets/img/wangxin.jpg)"></span>
+						<span class="ml-2 d-none d-lg-block">
+						  <span class="text-default">管理员</span>
+						  
+						</span>
+					  </a>
+					  <div class="dropdown-menu dropdown-menu-right dropdown-menu-arrow">
+						<a class="dropdown-item" href="#">
+						  <i class="dropdown-icon fe fe-user"></i> 资料
+						</a>
+
+						<a class="dropdown-item" href="#">
+						  <i class="dropdown-icon fe fe-settings"></i> 设置
+						</a>
+						<a class="dropdown-item" href="login.html">
+						  <i class="dropdown-icon fe fe-settings"></i> 登陆
+						</a>
+						
+						<a class="dropdown-item" href="#">
+						  <i class="dropdown-icon fe fe-log-out"></i> 退出
+						</a>
+						
+						 </div>
+					  </div>
+					  <a href="#" class="header-toggler d-lg-none ml-3 ml-lg-0" data-toggle="collapse" data-target="#headerMenuCollapse">
+                <span class="header-toggler-icon"></span>
+              </a>
+			   </div>
+
+            </div>
+          </div>
+        </div>
+
+
+<!-- 菜单栏 nav  End -->

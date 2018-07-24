@@ -26,7 +26,6 @@ http://xyfs.mydoc.io/
 
 #### 软件组成
 
-
 - 1.xyFS 管理后端；
 - 2.xyPortal Web前端中的“文档库”部分；
 - 3.xyFS HTTP API；
@@ -38,45 +37,31 @@ http://xyfs.mydoc.io/
 - 2.Dbcp2、Druid，数据库连接池2种模式可选
 - 3.JPA/Hibernate
 - 4.Ehcache
-- 5.HTML、 Only Bootstrap。只使用了单纯的Bootstrap，不再含任何前端UI框架，纯净、自然、轻量。
+- 5.HTML、 Only Bootstrap4。只使用了单纯的Bootstrap4，不再含其他任何前端UI框架。纯净、自然、轻量、极简、易维护。
 - 6.Thymeleaf/Freemarker，2种模板引擎可切换
-- 6.Tomcat
 - 7.MySQL、Oracle、SQLite，3种数据库模式可选
-- 8.Gradle
-- 9.Nginx
+- 8.其他：Gradle、Tomcat、Nginx
+
 
 #### 安装、使用教程
 
 - 1、Import Gradle Project；
 - 2、点击工程，右键Gradle>>Refresh Gradle Project；
-- 3、选择Gradle Task栏，点击“bootRun”；
+- 3、运行方法：右键“FileSystemApplication.java”，点击“run as”--“Java App..”。或者选择Gradle Task栏，点击“bootRun”；
 - 4、如果出现以下信息，说明运行时环境已经完成：
-<br>
-2018-07-09 16:06:56,790 INFO (TomcatWebServer.java:206)- Tomcat started on port(s): 9091 (http) with context path ''
 <br>
 2018-07-09 16:06:56,794 INFO (StartupInfoLogger.java:59)- Started FileSystemApplication in 14.575 seconds (JVM running for 15.457)
 <br>
+如果出现（Exception opening socket）localhost:27017异常 ，不必惊慌，只是mongodb未安装而已，不影响系统使用。
+<br>
 如要了解Gradle编译和运行更多事宜，请访问Spring Boot官网文章：Building Java Projects with Gradle
+<br>
 地址：https://spring.io/guides/gs/gradle/
 <br>
 这时就可以使用，访问：
 <br>
 http://localhost:9091/
 <br>
-调试信息类似：
-<br>
-2018-07-09 16:35:15,725 INFO (StartupInfoLogger.java:59)- Started FileSystemApplication in 14.116 seconds (JVM running for 15.16)
-<br>2018-07-09 16:35:30,184 INFO (DirectJDKLog.java:180)- Initializing Spring FrameworkServlet 'dispatcherServlet'
-<br>2018-07-09 16:35:30,184 INFO (FrameworkServlet.java:494)- FrameworkServlet 'dispatcherServlet': initialization started
-<br>2018-07-09 16:35:30,221 INFO (FrameworkServlet.java:509)- FrameworkServlet 'dispatcherServlet': initialization completed in 37 ms
-<br>UsesCache.files:1000000
-<br>UsesCache.usedspace:1.0E9
-<br>qiniu upload:wangxin_muc2.png
-<br>UsesCache.files:1000001
-<br>UsesCache.usedspace:1.000073069E9
-<br>#########################
-<br>qiniu upload success,download url:http://pbby0yzdu.bkt.clouddn.com/wangxin_muc2.png
-<br>#########################
 			
 <br>
 如要了解Gradle编译和运行更多事宜，请访问Spring Boot官网文章：Building Java Projects with Gradle
@@ -94,17 +79,17 @@ storage.rename = true
 
 存储源.可多选.可以同时储存多个数据源,便于备份      
 类型有：xyfs\\Seafile\\FastDFS\\SeaweedFS\\MongoDB\\aliOSS\\qiniu\\CFS        
-storage.todisk = true  
-storage.toqiniu = true
-storage.tofastdfs = false
-storage.tomongodb = false
-storage.toseaweedfs = false
-storage.toalioss = false
-storage.tocfs = false
+- storage.todisk = true  
+- storage.toqiniu = true
+- storage.tofastdfs = false
+- storage.tomongodb = false
+- storage.toseaweedfs = false
+- storage.toalioss = false
+- storage.tocfs = false
 
 设置下载的源 ,单选  
 类型有：xyfs\\Seafile\\FastDFS\\SeaweedFS\\MongoDB\\aliOSS\\qiniu\\CFS       
-storage.downloadfrom = xyfs
+- storage.downloadfrom = xyfs
 
 
 ### 全部配置：

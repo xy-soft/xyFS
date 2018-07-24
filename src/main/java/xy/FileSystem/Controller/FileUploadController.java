@@ -46,7 +46,7 @@ public class FileUploadController {
 	
 	ExecutorService executorService = Executors.newFixedThreadPool(5);
 
-	@GetMapping("/")
+	@GetMapping("/files")
 	public String listUploadedFiles(Model model) throws IOException {
 		
 		System.out.println("UsesCache.files:"+UsesCache.files);
@@ -59,7 +59,7 @@ public class FileUploadController {
 								.build().toString())
 						.collect(Collectors.toList()));
 
-		return "uploadForm";
+		return "file/"+prop.getTemplate()+"/uploadForm";
 	}
 
 	@GetMapping("/files/{filename:.+}")
@@ -72,7 +72,7 @@ public class FileUploadController {
 				.body(file);
 	}
 
-	@PostMapping("/")
+	@PostMapping("/files")
 	public String handleFileUpload(MultipartHttpServletRequest request, RedirectAttributes redirectAttributes,
 			@RequestParam int appid, @RequestParam String username, @RequestParam String groupid) {
 		Iterator<String> itr = request.getFileNames();
@@ -93,9 +93,9 @@ public class FileUploadController {
 
 		dbSave(appid, username, groupid, file, fileName);
 
-		redirectAttributes.addFlashAttribute("message", "Successfully uploaded: " + file.getOriginalFilename());
+		redirectAttributes.addFlashAttribute("message", "上传成功: " + file.getOriginalFilename());
 
-		return "redirect:/";
+		return "redirect:/files";
 	}
 
 	public void doUpload(MultipartFile file, final String finalFilename, final String filePath) {
@@ -169,7 +169,7 @@ public class FileUploadController {
 		storageService.store(mpf);
 		redirectAttributes.addFlashAttribute("message", "Successfully uploaded: " + mpf.getOriginalFilename());
 
-		return "redirect:/";
+		return "redirect:/files";
 
 	}
 
