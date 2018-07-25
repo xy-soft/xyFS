@@ -49,7 +49,7 @@ public class FileSystemApplication {
 	@Bean
     CommandLineRunner init(StorageService storageService) {
         return (args) -> {
-            storageService.deleteAll();
+            //storageService.deleteAll();
             storageService.init();
             
             initCache();

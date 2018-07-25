@@ -1,0 +1,67 @@
+####NoSQL方向####
+
+Redis
+Ehcache
+MongoDB
+Cassandra
+Elasticsearch
+Logstash
+ActiveMQ
+RabbitMQ
+
+####大数据方向####
+Mahout
+Spark
+Spark Stream
+Hadoop HDFS、HBase、Hive、Pig
+Storm实时处理框架
+机器学习监督学习
+机器学习无监督学习
+
+
+####JAVA开发方向####
+
+Zookeeper
+已学：Znode\Watch\Version\Session概念、基础命令、配置、Java Client、分布式“主-从-客户”模式协同、CuratorFramework监听器\Cache、分布式锁、CuratorTransaction、异步监听器、Zookeeper事务管理
+未学：集群配置
+同类技术：Consul
+
+Kafka
+已学：命令行、配置、客户端、异步生产消费、偏移量、Avro序列化、流处理、Connect
+未学：监控、MirrorMaker、集群复制
+
+Avro
+已学：Schema、依赖关系、Code generation、Serializing/Deserializing机制、HttpTransceiver/NettyTransceiver、RPC通信
+同类技术：Thrift
+
+Netty
+
+Spring Boot
+
+事务开发
+异步开发
+分布式开发
+
+待学：Disruptor并发编程框架、Elastic-job分布式调度解决方案
+
+####运维开发方向####
+
+Nginx:
+已学：命令、变量、重定向、反向代理、负载均衡、HTTP模块、TCP模块、SSL单向\双向认证、安全控制
+未学：HTTP缓存、Lua开发；
+
+Flume
+已学：代理配置、Source、channel、Sink、Netcat源、顺序生成源、kafka源、JDBC源、Hadoop HDFS 输出
+同类技术：Kafka流处理
+
+Tomcat
+
+待学：Hystrix熔断器
+
+####算法方向####
+
+
+####开发测试方向####
+
+
+

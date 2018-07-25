@@ -67,6 +67,10 @@ public class Diskfile implements Serializable {
 	private String urlalioss;
 	
 	private String urlcfs;
+	@Temporal(TemporalType.TIMESTAMP)
+	private Date uploadDate;
+
+	private String uploadUser;
 	
 	public String getUrldisk() {
 		return urldisk;
@@ -132,10 +136,7 @@ public class Diskfile implements Serializable {
 		this.urlcfs = urlcfs;
 	}
 
-	@Temporal(TemporalType.TIMESTAMP)
-	private Date uploadDate;
 
-	private String uploadUser;
 
 	public Diskfile() {
 	}

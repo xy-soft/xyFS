@@ -32,8 +32,10 @@
 	<table class="table table-striped table-hover">
 		<thead>
 			<tr>
-			  <th><a class="sorted" sd:pagination-sort="username" >文件ID</a></th>
-			  <th><a >文件名</a></th>
+			  <th><a class="sorted" sd:pagination-sort="fileid" >文件ID</a></th>			  
+			  <th>appId</th>
+			  <th>上传者</th>
+			  <th>文件名</th>
 			  <th>大小(KB)</th>
 			  <th>OSS下载</th>
 			  <th>云端下载</th>
@@ -41,18 +43,22 @@
 		</thead>
 		<tbody>
 			<tr th:each="row : ${page}">
-			  <th scope="row" th:text="${row.fileid}"></th>
+			  <th th:text="${row.fileid}"></th>
+			  <td th:text="${row.appid}"></td>
+			  <td th:text="${row.uploadUser}"></td>
 			  <td th:text="${row.fileName}"></td>
 			  <td th:text="${row.fileSize}"></td>
+
 			  <td >
-			  <button type="button"	class="btn btn-primary btn-condensed">
-					<i class="fe fe-download"></i>
-			  </button>
+			  <div class="d-flex align-items-center">
+				<A th:href="${row.urldisk}" target="_blank"  class="stamp stamp-md bg-blue mr-3"><i class="fe fe-download"></i></A>
+			  <div>
+
 			  </td>
 			  <td >
-			  <button type="button"	class="btn btn-primary btn-condensed">
-					<i class="fe fe-download-cloud"></i>
-			  </button>
+			  <div class="d-flex align-items-center">
+				<A th:href="${row.urlqiniu}" target="_blank" class="stamp stamp-md bg-blue mr-3"><i class="fe fe-download-cloud"></i></A>
+			  <div>
 			  </td>
 			</tr>
 		</tbody>

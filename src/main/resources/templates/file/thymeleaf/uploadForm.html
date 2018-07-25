@@ -39,10 +39,9 @@
 	<div>
 		<form method="POST" enctype="multipart/form-data" action="/fileUpload">
 			<table>
-			<input type="hidden" name="appid" value="100" />
-			<input type="hidden" name="username" value="wangxin" />
-			<input type="hidden" name="groupid" value="" />
-				<tr><td>文件:</td><td><input type="file" name="file" /> <input type="submit" value=" 上 传 " /></td></tr>
+			<tr><td> appid:<input type="text" name="appid" value="100" /> </td></tr>
+			<tr><td> username:<input type="text" name="username" value="wangxin" /></td></tr>
+		    <tr><td>文件:</td><td><input type="file" name="file" /> <input type="hidden" name="groupid" value="" /> <input type="submit" value=" 上 传 " /></td></tr>
 				
 			</table>
 		</form>

@@ -60,9 +60,7 @@ dependencies {
 	compile group: 'com.aliyun', name: 'aliyun-java-sdk-ecs', version: '4.9.2'	
 	compile group: 'io.springfox', name: 'springfox-swagger2', version: '2.9.2'
 	compile group: 'io.springfox', name: 'springfox-swagger-ui', version: '2.9.2'
-	compile group: 'io.springfox', name: 'springfox-spring-web', version: '2.9.2'
-	compile group: 'io.springfox', name: 'springfox-spi', version: '2.9.2'
-	compile group: 'io.springfox', name: 'springfox-core', version: '2.9.2'
+
 	
     testCompile("org.springframework.boot:spring-boot-starter-test")
     testCompile('com.jayway.jsonpath:json-path')
