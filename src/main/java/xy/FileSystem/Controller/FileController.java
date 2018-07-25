@@ -18,6 +18,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import io.swagger.annotations.ApiOperation;
 import xy.FileSystem.Entity.Diskfile;
 import xy.FileSystem.Entity.DiskfileRepository;
 import xy.FileSystem.Entity.PagerModel;
@@ -38,23 +39,21 @@ public class FileController {
 	@Autowired
 	private StorageProperties prop;
 	
-	//首页
+	@ApiOperation(value="文件系统首页")
 	@GetMapping("/index")
 	public String index(ModelMap model){
 			
 			return "file/"+prop.getTemplate()+"/index";
 	}
-	
+
+	@ApiOperation(value="文件系统正在建设页")
 	@GetMapping("/empty")
 	public String emptypage(ModelMap model){
 			
 			return "file/"+prop.getTemplate()+"/empty";
 	}
 	
-	
-	
-		
-	//全部文件的列表，自动分页
+	@ApiOperation(value="全部文件的列表，服务器端自动分页")
 	@GetMapping("/all")
 	public String list(ModelMap model, Pageable pageable){
 
@@ -63,7 +62,7 @@ public class FileController {
 		return "file/"+prop.getTemplate()+"/allfilebyauto";
 	}
 	
-	//手动分页
+	@ApiOperation(value="全部文件的列表，服务器端手动分页，停用")
 	@GetMapping("/all_ManualPaging")
 	public ModelAndView getAll(@RequestParam("pageSize") Optional<Integer> pageSize,
 			@RequestParam("page") Optional<Integer> page){
@@ -75,8 +74,7 @@ public class FileController {
 		DebugUtil.debug("evalPage:"+evalPage);
 		PageRequest pageRequest = PageRequest.of(evalPage, evalPageSize);
 		
-		//PageRequest pageRequest = PageRequest.of(evalPage, evalPageSize, Sort.by(Sort.Direction.ASC,"fileid"))
-				
+		//PageRequest pageRequest = PageRequest.of(evalPage, evalPageSize, Sort.by(Sort.Direction.ASC,"fileid"))				
 		Page<Diskfile> filelist = repository.findAll(pageRequest);
 		PagerModel pager = new PagerModel(filelist.getTotalPages(),filelist.getNumber(),BUTTONS_TO_SHOW);
 
@@ -89,10 +87,9 @@ public class FileController {
 		return modelAndView;
 		
 	}
-	
-	
-	
-	@RequestMapping(value = "/findallsort", method=RequestMethod.GET)
+		
+	@ApiOperation(value="全部文件的列表，带排序分页")	
+	@RequestMapping(value = "/findAllSort", method=RequestMethod.GET)
 	public Page<Diskfile> getEntryByPageable(@PageableDefault(value = 15, sort = { "fileid" }, direction = Sort.Direction.DESC) 
 	    Pageable pageable) {
 	    return repository.findAll(pageable);

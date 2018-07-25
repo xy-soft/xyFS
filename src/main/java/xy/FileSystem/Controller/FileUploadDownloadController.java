@@ -24,6 +24,8 @@ import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.mvc.method.annotation.MvcUriComponentsBuilder;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+
+import io.swagger.annotations.ApiOperation;
 import xy.FileSystem.Cache.UsesCache;
 import xy.FileSystem.Entity.Diskfile;
 import xy.FileSystem.Entity.DiskfileRepository;
@@ -36,7 +38,7 @@ import xy.FileSystem.Service.FileSystemStorageService;
 import xy.FileSystem.Service.QiniuService;
 
 @Controller
-public class FileUploadController {
+public class FileUploadDownloadController {
 	@Autowired
 	private FileSystemStorageService storageService;
 	@Autowired
@@ -46,6 +48,7 @@ public class FileUploadController {
 	
 	ExecutorService executorService = Executors.newFixedThreadPool(5);
 
+	@ApiOperation(value="文件上传后在上传页面展示文件")
 	@GetMapping("/files")
 	public String listUploadedFiles(Model model) throws IOException {
 		
@@ -55,13 +58,14 @@ public class FileUploadController {
 		model.addAttribute("files",
 				storageService.loadAll()
 						.map(path -> MvcUriComponentsBuilder
-								.fromMethodName(FileUploadController.class, "serveFile", path.getFileName().toString())
+								.fromMethodName(FileUploadDownloadController.class, "serveFile", path.getFileName().toString())
 								.build().toString())
 						.collect(Collectors.toList()));
 
 		return "file/"+prop.getTemplate()+"/uploadForm";
 	}
 
+	@ApiOperation(value="通过HttpHeaders下载文件")
 	@GetMapping("/files/{filename:.+}")
 	@ResponseBody
 	public ResponseEntity<Resource> serveFile(@PathVariable String filename) {
@@ -72,7 +76,8 @@ public class FileUploadController {
 				.body(file);
 	}
 
-	@PostMapping("/files")
+	@ApiOperation(value="文件上传")
+	@PostMapping("/fileUpload")
 	public String handleFileUpload(MultipartHttpServletRequest request, RedirectAttributes redirectAttributes,
 			@RequestParam int appid, @RequestParam String username, @RequestParam String groupid) {
 		Iterator<String> itr = request.getFileNames();
@@ -159,23 +164,66 @@ public class FileUploadController {
 		diskfileRepository.save(dbFile);
 	}
 
-	@PostMapping("/upload")
-	public String upload(MultipartHttpServletRequest request, RedirectAttributes redirectAttributes) {
-
-		Iterator<String> itr = request.getFileNames();
-
-		MultipartFile mpf = request.getFile(itr.next());
-
-		storageService.store(mpf);
-		redirectAttributes.addFlashAttribute("message", "Successfully uploaded: " + mpf.getOriginalFilename());
-
-		return "redirect:/files";
-
-	}
+//	@ApiOperation(value="文件上传")
+//	@PostMapping("/fileUpload")
+//	public String upload(MultipartHttpServletRequest request, RedirectAttributes redirectAttributes) {
+//
+//		Iterator<String> itr = request.getFileNames();
+//
+//		MultipartFile mpf = request.getFile(itr.next());
+//
+//		storageService.store(mpf);
+//		redirectAttributes.addFlashAttribute("message", "Successfully uploaded: " + mpf.getOriginalFilename());
+//
+//		return "redirect:/files";
+//
+//	}
 
 	@ExceptionHandler(StorageFileNotFoundException.class)
 	public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {
 		return ResponseEntity.notFound().build();
 	}
+
+	@ApiOperation(value="文件下载")
+	@GetMapping("/downloadById")
+	public String downloadById(String fileId) throws IOException {
+
+		return "";
+	}	
+
+	@ApiOperation(value="文件下载，通过七牛云下载")
+	@GetMapping("/downloadQiniu")
+	public String downloadQiniu(String fileId) throws IOException {
+
+		return "";
+	}	
+
+	@ApiOperation(value="文件下载，通过阿里云下载")
+	@GetMapping("/downloadAli")
+	public String downloadAli(String fileId) throws IOException {
+
+		return "";
+	}
+	
+	@ApiOperation(value="文件下载，通过FastDFS下载")
+	@GetMapping("/downloadFastDFS")
+	public String downloadFastDFS(String fileId) throws IOException {
+
+		return "";
+	}	
+	
+	@ApiOperation(value="文件下载，通过MongoDB下载")
+	@GetMapping("/downloadMongoDB")
+	public String downloadMongoDB(String fileId) throws IOException {
+
+		return "";
+	}	
+
+	@ApiOperation(value="文件下载，通过SeaweedFS下载")
+	@GetMapping("/downloadSeaweedFS")
+	public String downloadSeaweedFS(String fileId) throws IOException {
+
+		return "";
+	}	
 
 }
