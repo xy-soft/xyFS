@@ -70,7 +70,7 @@ API管理:
 <br>
 访问：
 <br>
-http://localhost:9091/
+http://localhost:9091/files/index/
 <br>
 			
 
