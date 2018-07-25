@@ -23,6 +23,9 @@ xyFS不仅仅是独立可用的文件系统，还通过接口灵活集成以下�
 
 http://xyfs.mydoc.io/
 
+运行时访问地址：
+<br>
+http://localhost:9091/files/index/
 
 #### 软件组成
 
