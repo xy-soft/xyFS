@@ -161,6 +161,10 @@ public class FileUploadDownloadController {
 			dbFile.setUrlqiniu(prop.getQiniuprefix() + fileName);
 		}
 
+		if (prop.isTomongodb()) {
+			dbFile.setUrlmongodb(fileId);
+		}
+
 		diskfileRepository.save(dbFile);
 	}
 

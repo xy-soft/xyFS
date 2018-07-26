@@ -33,12 +33,12 @@
 		<thead>
 			<tr>
 			  <th><a class="sorted" sd:pagination-sort="fileid" >文件ID</a></th>			  
-			  <th>appId</th>
-			  <th>上传者</th>
+			  <th><a class="sorted" sd:pagination-sort="appid" >appId</a></th>
+			  <th><a class="sorted" sd:pagination-sort="uploadUser" >上传者</a></th>
 			  <th>文件名</th>
 			  <th>大小(KB)</th>
 			  <th>OSS下载</th>
-			  <th>云端下载</th>
+			  <th>云端下载通道</th>
 			</tr>
 		</thead>
 		<tbody>
@@ -51,14 +51,28 @@
 
 			  <td >
 			  <div class="d-flex align-items-center">
-				<A th:href="${row.urldisk}" target="_blank"  class="stamp stamp-md bg-blue mr-3"><i class="fe fe-download"></i></A>
+				<A th:href="${row.urldisk}" target="_blank"  class="stamp stamp-md bg-blue mr-3" data-toggle="tooltip" title="OSS下载"><i class="fe fe-download" ></i></A>
 			  <div>
-
 			  </td>
 			  <td >
-			  <div class="d-flex align-items-center">
-				<A th:href="${row.urlqiniu}" target="_blank" class="stamp stamp-md bg-blue mr-3"><i class="fe fe-download-cloud"></i></A>
-			  <div>
+				  <div class="d-flex align-items-center" th:if="${!#strings.isEmpty(row.urlqiniu)}">
+					<A th:href="${row.urlqiniu}" target="_blank" class="stamp stamp-md bg-blue mr-3"  data-toggle="tooltip" title="七牛"><i class="fe fe-download-cloud" ></i></A>
+				  <div>
+				  
+				  <div class="d-flex align-items-center" th:if="${#objects.nullSafe(row.urlmongodb,default)}">
+					<A th:href="${row.urlmongodb}" target="_blank" class="stamp stamp-md bg-blue mr-3" data-toggle="tooltip" title="mongodb下载"><i class="fe fe-download-cloud"></i></A>
+				  <div>
+				  
+			
+				  <div class="d-flex align-items-center" th:if="${!#strings.isEmpty(row.urlfastdfs)}">
+					<A th:href="${row.urlfastdfs}" target="_blank" class="stamp stamp-md bg-blue mr-3" data-toggle="tooltip" title="fastDFS下载"><i class="fe fe-download-cloud"></i></A>
+				  <div>
+			  
+				  <div class="d-flex align-items-center" th:if="${!#strings.isEmpty(row.urlalioss)}">
+					<A th:href="/files/gridfsdownload/${row.urlalioss}" target="_blank" class="stamp stamp-md bg-blue mr-3" data-toggle="tooltip" title="阿里云下载"><i class="fe fe-download-cloud"></i></A>
+				  <div>
+			 
+
 			  </td>
 			</tr>
 		</tbody>

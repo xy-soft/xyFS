@@ -6,6 +6,7 @@ import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.UUID;
 
 import javax.servlet.http.HttpServletResponse;
 
@@ -17,9 +18,11 @@ import com.mongodb.DB;
 import com.mongodb.DBObject;
 import com.mongodb.MongoClient;
 import com.mongodb.ServerAddress;
+import com.mongodb.client.gridfs.GridFSUploadStream;
 import com.mongodb.gridfs.GridFS;
 import com.mongodb.gridfs.GridFSDBFile;
 import com.mongodb.gridfs.GridFSFile;
+import com.qiniu.storage.model.DefaultPutRet;
 
 import xy.FileSystem.File.FileListener;
 import xy.FileSystem.File.UploadFileExt;
@@ -30,8 +33,7 @@ import xy.FileSystem.Propert.StorageProperties;
 public class MongoService  implements FileListener{
     @Autowired
     private StorageProperties prop;
-    private MongoClient mongo;
-        
+           
     /**
 	 * @MethodName	: getMongo
 	 * @Description	: 获取数据连接
@@ -56,8 +58,27 @@ public class MongoService  implements FileListener{
 
 	@Override
 	public UploadResult Store(UploadFileExt ufe) {
-		// TODO Auto-generated method stub
-		return null;
+		UploadResult result = new UploadResult();
+
+		String id = UUID.randomUUID().toString();
+		LinkedHashMap<String, Object> map = new LinkedHashMap<String, Object>();
+		
+		if (ufe.getBytes() != null) {
+			System.out.println("mongo gridfs upload:"+ufe.getFileName());
+			uploadFile(ufe,id, map);
+			result.fileName = ufe.getFileName();
+			result.fsize = ufe.getSize();
+			result.hash = id;
+			result.key = id;
+			result.bucket = prop.getGridfscollectionname();
+			result.location = id;
+			result.tag = "";
+		}
+		System.out.println("#########################");
+		System.out.println("Mongo GridFS upload success,file id:"+ result.location);
+		System.out.println("#########################");
+
+		return result;
 	}
 
 	@Override
@@ -66,52 +87,37 @@ public class MongoService  implements FileListener{
 		
 	}
 	
-	/**
-	 *  @MethodName	: uploadFile
-	 * @Description	: 上传文件
-	 * @param file ：文件，File类型
-	 * @param id	：唯一标示文件，可根据id查询到文件.必须设置
-	 * @param prop.getGridfsdbname() ：库名，每个系统使用一个库
-	 * @param prop.getGridfscollectionname()：集合名，如果传入的集合名库中没有，则会自动新建并保存
-	 * @param map：放入你想要保存的属性，例如文件类型（“congtentType”".jpg"）,字符串类型，区分大小写，如果属性没有的话会自动创建并保存
-	 */
-   public void uploadFile(File file,String id,LinkedHashMap<String, Object> map){
-	   //把mongoDB的数据库地址配置在外部。
-	   
-		try {
-						 
-			DB db = mongo.getDB(prop.getGridfsdbname());  
-			System.out.println(db.toString());
-			//每个库中可以分子集
-			GridFS gridFS= new GridFS(db,prop.getGridfscollectionname());
-			
-			// 创建gridfsfile文件
-			GridFSFile gridFSFile = gridFS.createFile(file);
-			//判断是否已经存在文件，如果存在则先删除
-			GridFSDBFile gridFSDBFile=getFileById(id);
-			if(gridFSDBFile!=null){
-				deleteFile(id);
-			}
-			//将文件属性设置到
-			gridFSFile.put("_id", id);
-			//循环设置的参数
-			if (map != null && map.size() > 0) {
-				for (String key : map.keySet()) {
-					gridFSFile.put(key, map.get(key));
+	public void uploadFile(UploadFileExt ufe,String id,LinkedHashMap<String, Object> map){
+			try {
+							 
+				DB db = getMongo().getDB(prop.getGridfsdbname());  
+				GridFS gridFS= new GridFS(db,prop.getGridfscollectionname());
+				GridFSFile gridFSFile = gridFS.createFile(ufe.getBytes());
+
+				//将文件属性设置到
+				gridFSFile.put("_id", id);
+				gridFSFile.put("contentType", ufe.getMimeType());
+				gridFSFile.put("filename", ufe.getFileName());
+				//循环设置的参数
+				if (map != null && map.size() > 0) {
+					for (String key : map.keySet()) {
+						gridFSFile.put(key, map.get(key));
+					}
 				}
+				
+				//保存上传
+				gridFSFile.save();
+				getMongo().close();
+			} catch (Exception e) {
+				e.printStackTrace();
 			}
-			//保存上传
-			gridFSFile.save();
-			mongo.close();
-		} catch (Exception e) {
-			e.printStackTrace();
+			finally{
+				getMongo().close();
+			}
+			
 		}
-		finally{
-			mongo.close();
-		}
-		
-	}
-   
+	
+	
    /**  
     * @MethodName	: deleteFile
     * @Description	: 删除文件
@@ -123,7 +129,7 @@ public class MongoService  implements FileListener{
 
 		try {
 			//获得库
-			DB db= mongo.getDB(prop.getGridfsdbname());
+			DB db= getMongo().getDB(prop.getGridfsdbname());
 			//获得子集
 			GridFS gridFS= new GridFS(db,prop.getGridfscollectionname());
 			//删除文件
@@ -133,7 +139,7 @@ public class MongoService  implements FileListener{
 			e.printStackTrace();
 		}
 		finally{
-			mongo.close();
+			getMongo().close();
 		}
    }
    
@@ -150,7 +156,7 @@ public class MongoService  implements FileListener{
 
        try {
            //获得库
-           DB db= mongo.getDB(prop.getGridfsdbname());
+           DB db= getMongo().getDB(prop.getGridfsdbname());
            //获得子集
            GridFS gridFS= new GridFS(db,prop.getGridfscollectionname());
            Map<String,String> map = new HashMap<String,String>();
@@ -163,7 +169,7 @@ public class MongoService  implements FileListener{
            e.printStackTrace();
        }
        finally{
-			mongo.close();
+    	   getMongo().close();
 		}
   }
    
@@ -179,7 +185,7 @@ public class MongoService  implements FileListener{
 	   GridFSDBFile gridFSDBFile=null;
 	   try {
 			//获得库
-			DB db= mongo.getDB(prop.getGridfsdbname());
+			DB db= getMongo().getDB(prop.getGridfsdbname());
 			//获得子集
 			GridFS gridFS= new GridFS(db,prop.getGridfscollectionname());
 			//获得文件
@@ -189,7 +195,7 @@ public class MongoService  implements FileListener{
 			e.printStackTrace();
 		}
 	   finally{
-			mongo.close();
+		   getMongo().close();
 		}
 	   //返回数据
 	   return gridFSDBFile;
@@ -207,7 +213,7 @@ public class MongoService  implements FileListener{
        try {
 
             //获得库
-            DB db= mongo.getDB(prop.getGridfsdbname());
+            DB db= getMongo().getDB(prop.getGridfsdbname());
             //获得子集
             GridFS gridFS= new GridFS(db,prop.getGridfscollectionname());
             //获得文件
@@ -217,7 +223,7 @@ public class MongoService  implements FileListener{
             e.printStackTrace();
         }
        finally{
-			mongo.close();
+    	   getMongo().close();
 		}
        //返回数据
        return gridFSDBFileList;

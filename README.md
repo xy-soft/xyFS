@@ -48,16 +48,27 @@ http://localhost:9091/files/index/
 #### 截图预览
 首页界面:
 <br>
-<img alt="XyTalk IM" src="http://111.230.157.216/img/index.png" />
+<img alt="XyTalk FS" src="http://111.230.157.216/img/index.png" WIDTH="800" />
+<br>
 文件管理:
 <br>
-<img alt="XyTalk IM" src="http://111.230.157.216/img/files.png" />
+<img alt="XyTalk FS" src="http://111.230.157.216/img/files.png" WIDTH="800" />
+<br>
 API管理:
 <br>
-<img alt="XyTalk IM" src="http://111.230.157.216/img/api.png" />
+<img alt="XyTalk FS" src="http://111.230.157.216/img/api.png"  WIDTH="800"/>
+<br>
 测试上传:
 <br>
-<img alt="XyTalk IM" src="http://111.230.157.216/img/upload.png" />
+<img alt="XyTalk FS" src="http://111.230.157.216/img/upload.png" WIDTH="800" />
+<br>
+上传到七牛云效果:
+<br>
+<img alt="XyTalk FS" src="http://111.230.157.216/img/qiniufile.png"  WIDTH="800"/>
+<br>
+上传到Mongo GridFS效果:
+<br>
+<img alt="XyTalk FS" src="http://111.230.157.216/img/gridfsfile.png" WIDTH="800" />
 
 #### 安装、使用教程
 
