@@ -120,6 +120,7 @@ public class FileUploadDownloadController {
 		UploadFileExt ufe;
 		try {
 			ufe = new UploadFileExt(finalFilename, file.getBytes(), file.getContentType(), file.getSize());
+			ufe.setUrl("D:/0NewIMRespo/xyFS/uploadfiledir/" + finalFilename);
 			if (ufe != null) {
 				for (FileListener fl : StoreSource.getListensers()) {
 										

@@ -18,6 +18,8 @@ xyFS不仅仅是独立可用的文件系统，还通过接口灵活集成以下�
 - 7.公有云存储：阿里OSS云存储 
 - 8.公有云存储：七牛云 
 - 9.公有云存储：腾讯文件云存储 CFS 
+<br>在第三方私有云领域，我推荐SeaweedFS、GridFS。在公有云领域，推荐阿里OSS和七牛云。
+<br>SeaweedFS是一个高性能、自带Rest API的分布式文件系统，可访问我的博客了解：https://www.cnblogs.com/starcrm/p/9377851.html
 
 #### 项目详细文档
 
@@ -66,9 +68,21 @@ API管理:
 <br>
 <img alt="XyTalk FS" src="http://111.230.157.216/img/qiniufile.png"  WIDTH="800"/>
 <br>
+上传到阿里云效果:
+<br>
+<img alt="XyTalk FS" src="http://111.230.157.216/img/alifile.png"  WIDTH="800"/>
+<br>
 上传到Mongo GridFS效果:
 <br>
 <img alt="XyTalk FS" src="http://111.230.157.216/img/gridfsfile.png" WIDTH="800" />
+<br>
+上传到SeaweedFS效果:
+<br>
+<img alt="XyTalk FS" src="http://111.230.157.216/img/seaweedf1.png" WIDTH="800" />
+<br>
+程序调试输出:
+<br>
+<img alt="XyTalk FS" src="http://111.230.157.216/img/fsdebug.png" WIDTH="800" />
 
 #### 安装、使用教程
 

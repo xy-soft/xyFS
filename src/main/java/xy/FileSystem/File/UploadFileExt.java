@@ -14,6 +14,7 @@ public class UploadFileExt {
 	private String mimeType;
 	private String catalog;
 	private String url;
+
 	private byte[] bytes;
 	private File file;
 	private InputStream inputStream;
@@ -76,6 +77,11 @@ public class UploadFileExt {
 	public String getUrl() {
 		return url;
 	}
+	
+	public void setUrl(String url) {
+		this.url = url;
+	}
+
 
 	public byte[] getBytes() {
 		return bytes;

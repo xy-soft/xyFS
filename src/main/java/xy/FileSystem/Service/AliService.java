@@ -1,17 +1,22 @@
 package xy.FileSystem.Service;
 
 
+import java.io.ByteArrayInputStream;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.aliyun.oss.ClientException;
 import com.aliyun.oss.OSS;
+import com.aliyun.oss.OSSClient;
 import com.aliyun.oss.OSSClientBuilder;
 import com.aliyun.oss.OSSException;
 import com.aliyun.oss.model.CompleteMultipartUploadResult;
 import com.aliyun.oss.model.DownloadFileRequest;
 import com.aliyun.oss.model.DownloadFileResult;
 import com.aliyun.oss.model.ObjectMetadata;
+import com.aliyun.oss.model.PutObjectRequest;
+import com.aliyun.oss.model.PutObjectResult;
 import com.aliyun.oss.model.UploadFileRequest;
 import com.aliyun.oss.model.UploadFileResult;
 import xy.FileSystem.File.FileListener;
@@ -26,6 +31,7 @@ public class AliService implements FileListener{
 	StorageProperties prop;
 	
 	private OSS init(){
+
 		return new OSSClientBuilder().build(prop.getAliendpoint(),
 				prop.getAliaccesskeyid(), 
 				prop.getAliaccesskeysecret());
@@ -33,20 +39,30 @@ public class AliService implements FileListener{
 	
 	@Override
 	public UploadResult Store(UploadFileExt ufe) {
-		//上传回调
-		CompleteMultipartUploadResult cmuResult = store(ufe.getUrl(),ufe.getFileName());
+		//上传回调,断点续传
+		//CompleteMultipartUploadResult cmuResult = store(ufe.getUrl());
+		//上传回调,普通上传
+
+		PutObjectResult cmuResult = store(ufe);
 		UploadResult result = new UploadResult();
+
+		result.fileName = ufe.getFileName();
+		
 		if (ufe.getBytes() != null) {
-			//TODO byte[] upload
-		} else {
-			result.fileName = ufe.getFileName();
-			result.fsize = ufe.getFile().length();
-			result.hash = Integer.toString(ufe.getFile().hashCode());
-			result.key = cmuResult.getKey();
-			result.bucket = cmuResult.getBucketName();
-			result.location = cmuResult.getLocation();
-			result.tag = cmuResult.getETag();
+			result.fsize = ufe.getSize();
 		}
+		else{
+			result.fsize = ufe.getFile().length();		
+		}
+
+		result.key = ufe.getFileName();
+		result.bucket = prop.getAlibucketname();
+		result.location = prop.getAlibucketname();
+		result.tag = cmuResult.getETag();
+		
+		System.out.println("#########################");
+		System.out.println("Ali OSS upload success,file id:"+ result.key);
+		System.out.println("#########################");
 		return result;
 	}
 
@@ -55,13 +71,15 @@ public class AliService implements FileListener{
 		//下载回调
 		
 	}
-		
-	public CompleteMultipartUploadResult store(String filePath, String fileName) {
+	
+	//断点续传上传,多线程
+	public CompleteMultipartUploadResult store(String filePath) {
 		OSS ossClient = init();
 		try {
             UploadFileRequest uploadFileRequest = new UploadFileRequest(prop.getAlibucketname(), prop.getAlidownloadkey());
             //local file
             uploadFileRequest.setUploadFile(filePath);
+            
             //5线程
             uploadFileRequest.setTaskNum(5);
             // 切分  1MB.
@@ -94,6 +112,28 @@ public class AliService implements FileListener{
             ossClient.shutdown();
         }
 		return null;
+	}
+	
+	//断点续传上传,单线程
+	public PutObjectResult store(UploadFileExt object) {
+		try {
+			PutObjectRequest request = null;
+			if(object.getFile() != null){
+				request = new PutObjectRequest(prop.getAlibucketname(), object.getFileName(), object.getFile());
+			}else if(object.getBytes() != null){
+				request = new PutObjectRequest(prop.getAlibucketname(), object.getFileName(), new ByteArrayInputStream(object.getBytes()));
+			}else if(object.getInputStream() != null){
+				request = new PutObjectRequest(prop.getAlibucketname(), object.getFileName(), object.getInputStream());
+			}else{
+				throw new IllegalArgumentException("upload object is NULL");
+			}
+			
+			PutObjectResult result = init().putObject(request);
+			return result;
+			
+		} catch (OSSException e) {
+			throw new RuntimeException(e.getErrorMessage());
+		}
 	}
 	
 	public void download(String localFile, String fileKey){

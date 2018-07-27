@@ -62,6 +62,9 @@ public class SeaweedfsService  implements FileListener {
 			result.location = "";
 			result.tag = "";
 		}
+		System.out.println("#########################");
+		System.out.println("Seaweedfs upload success,fid:"+ result.key);
+		System.out.println("#########################");
 		return result;
 	}
 
