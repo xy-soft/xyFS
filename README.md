@@ -127,6 +127,122 @@ storage.rename = true
 类型有：xyfs\\Seafile\\FastDFS\\SeaweedFS\\MongoDB\\aliOSS\\qiniu\\CFS       
 - storage.downloadfrom = xyfs
 
+### upload上传API说明
+
+<b>方式1：使用http Post接口</b>
+<br>
+Post API URL： /fileUploadPost
+<br>
+Parameters：<br>
+     * @param MultipartHttpServletRequest request, <br>
+     * @param Integer appid   应用id<br>
+     * @param String username   上传者用户名<br>
+     * @param String groupid   MUC群组名称，如果是个人文件则无需
+<br>
+return：{statusCode=状态码, content='上传后的文件名'}
+<br>
+比如：
+<br>
+{statusCode=200, content='wangxin_Tigase开发文档.doc'}
+
+<b>方式2：java client上传（请见ClientMultipartFormPost.java）：</b>
+<br>
+上传方法：
+<pre><code>
+    /**
+     * 执行文件上传
+     *
+     * @param httpClient      HttpClient客户端实例，传入null会自动创建一个
+     * @param remoteFileUrl   远程接收文件的地址
+     * @param localFilePath   本地文件地址
+     * @param appid   应用id
+     * @param username   上传者用户名
+     * @param groupid   MUC群组名称，如果是个人文件则无需
+     * @param charset         请求编码，默认UTF-8
+     * @param closeHttpClient 执行请求结束后是否关闭HttpClient客户端实例
+     * @return
+     * @throws ClientProtocolException
+     * @throws IOException
+     */
+    public static HttpResult executeUploadFile(CloseableHttpClient httpClient,
+    		String remoteFileUrl, 
+    		String localFilePath, 		
+    		String appid, 
+    		String username, 
+    		String groupid,
+    		boolean closeHttpClient,
+    		String charset   )
+    		......
+</code></pre>
+<br>
+如何引用上传方法：
+
+<pre><code>
+package xy.FileSystem.Client;
+
+import xy.FileSystem.File.HttpResult;
+import xy.FileSystem.Utils.HttpHelper;
+
+//Post上传演示
+public class ClientMultipartFormPost {
+
+	public static void main(String[] args) throws Exception {
+
+		HttpResult  result = HttpHelper.executeUploadFile(HttpHelper.createHttpClient(), 
+				"http://localhost:9091/fileUploadPost", //post路径url
+				"D://Tigase开发文档.doc", //要上传的本地文件全路径
+				"1234", // appid
+				"wangxin", //上传者username
+				"", //groupid,如果不涉及群组，则无需传此参数
+				true,//执行请求结束后是否关闭HttpClient客户端实例
+				"UTF-8" );
+
+		System.out.println(result.toString());
+
+	}
+
+}
+</code></pre>
+
+返回值：
+<br>
+如果成功：
+<br>
+{statusCode=200, content='上传后的文件名'}
+<br>
+比如：
+<br>
+{statusCode=200, content='wangxin_Tigase开发文档.doc'}
+
+### download下载API说明
+
+<b>方式1：使用http Get接口</b>
+<br>
+Get API URL： /downloadByFilename
+<br>
+Parameters：filename ,类型：string
+<br>
+return：下载成功则true;失败则false
+<br>
+<b>方式2:java client下载（请见ClientMultipartFormDownload.java）</b>
+<pre><code>
+package xy.FileSystem.Client;
+
+import xy.FileSystem.Utils.HttpHelper;
+//下载
+public class ClientMultipartFormDownload {
+	public static void main(String[] args) throws Exception {
+
+		HttpHelper.executeDownloadFile(HttpHelper.createHttpClient(), 
+				"http://localhost:9091/files/wangxin_Tigase开发文档.doc", //服务器文件
+				"D://wangxin_Tigase开发文档.doc", //下载到本地的文件
+				"UTF-8",
+				true);
+
+	}
+}
+
+</code></pre>
 
 ### 全部配置：
 <pre><code># tomcat服务端口         #

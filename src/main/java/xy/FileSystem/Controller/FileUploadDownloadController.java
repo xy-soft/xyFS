@@ -11,6 +11,7 @@ import java.util.stream.Collectors;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.core.io.Resource;
 import org.springframework.http.HttpHeaders;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -36,6 +37,7 @@ import xy.FileSystem.File.UploadFileExt;
 import xy.FileSystem.Propert.StorageProperties;
 import xy.FileSystem.Service.FileSystemStorageService;
 import xy.FileSystem.Service.QiniuService;
+import xy.FileSystem.Utils.HttpHelper;
 
 @Controller
 public class FileUploadDownloadController {
@@ -76,7 +78,7 @@ public class FileUploadDownloadController {
 				.body(file);
 	}
 
-	@ApiOperation(value="文件上传")
+	@ApiOperation(value="文件上传Demo,用于上传测试，上传后将重定向")
 	@PostMapping("/fileUpload")
 	public String handleFileUpload(MultipartHttpServletRequest request, RedirectAttributes redirectAttributes,
 			@RequestParam int appid, @RequestParam String username, @RequestParam String groupid) {
@@ -92,9 +94,8 @@ public class FileUploadDownloadController {
 		}
 
 		final String finalFilename = fileName;
-		final String finalFilePath = "";
 
-		doUpload(file, finalFilename, finalFilePath);
+		doUpload(file, finalFilename);
 
 		dbSave(appid, username, groupid, file, fileName);
 
@@ -103,7 +104,34 @@ public class FileUploadDownloadController {
 		return "redirect:/files";
 	}
 
-	public void doUpload(MultipartFile file, final String finalFilename, final String filePath) {
+	
+	@ApiOperation(value="用于外接Post上传请求，不重定向")
+	@PostMapping("/fileUploadPost")
+	public ResponseEntity<String> handleFileUploadPost(MultipartHttpServletRequest request, 
+					@RequestParam int appid,
+					@RequestParam String username, 
+					@RequestParam String groupid) {
+		Iterator<String> itr = request.getFileNames();
+		MultipartFile file = request.getFile(itr.next()); // 只取一个文件，不取多个
+		String fileName = file.getOriginalFilename();
+
+		if (prop.isRename()) {
+			fileName = username + "_" + file.getOriginalFilename();
+			if (groupid != null && !groupid.isEmpty()) {
+				fileName = groupid + "_" + file.getOriginalFilename();
+			}
+		}
+
+		final String finalFilename = fileName;
+
+		doUpload(file, finalFilename);
+		dbSave(appid, username, groupid, file, fileName);
+
+		return new ResponseEntity<String>(fileName,HttpStatus.OK);
+	}
+
+
+	public void doUpload(MultipartFile file, final String finalFilename) {
 
 		// 磁盘存储
 		if (prop.isTodisk()) {
@@ -169,31 +197,24 @@ public class FileUploadDownloadController {
 		diskfileRepository.save(dbFile);
 	}
 
-//	@ApiOperation(value="文件上传")
-//	@PostMapping("/fileUpload")
-//	public String upload(MultipartHttpServletRequest request, RedirectAttributes redirectAttributes) {
-//
-//		Iterator<String> itr = request.getFileNames();
-//
-//		MultipartFile mpf = request.getFile(itr.next());
-//
-//		storageService.store(mpf);
-//		redirectAttributes.addFlashAttribute("message", "Successfully uploaded: " + mpf.getOriginalFilename());
-//
-//		return "redirect:/files";
-//
-//	}
-
 	@ExceptionHandler(StorageFileNotFoundException.class)
 	public ResponseEntity<?> handleStorageFileNotFound(StorageFileNotFoundException exc) {
 		return ResponseEntity.notFound().build();
 	}
 
 	@ApiOperation(value="文件下载")
-	@GetMapping("/downloadById")
-	public String downloadById(String fileId) throws IOException {
+	@GetMapping("/downloadByFilename")
+	public ResponseEntity<Boolean> downloadByFilename(String filename) throws IOException {
+		
+		Boolean downloadSuccess = false;	
+		downloadSuccess = HttpHelper.executeDownloadFile(HttpHelper.createHttpClient(), 
+				"http://localhost:9091/files/wangxin_Tigase开发文档.doc", //服务器文件
+				//"/files/"+filename, //服务器文件
+				prop.getDownloadto() + filename, //下载到本地的文件
+				"UTF-8",
+				true);
 
-		return "";
+		return new ResponseEntity<Boolean>(downloadSuccess,HttpStatus.OK);
 	}	
 
 	@ApiOperation(value="文件下载，通过七牛云下载")

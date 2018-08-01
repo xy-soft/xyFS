@@ -25,6 +25,7 @@ import org.apache.http.entity.StringEntity;
 import org.apache.http.entity.mime.HttpMultipartMode;
 import org.apache.http.entity.mime.MultipartEntityBuilder;
 import org.apache.http.entity.mime.content.FileBody;
+import org.apache.http.entity.mime.content.StringBody;
 import org.apache.http.impl.client.CloseableHttpClient;
 import org.apache.http.impl.client.HttpClientBuilder;
 import org.apache.http.impl.client.HttpClients;
@@ -384,7 +385,14 @@ public class HttpHelper {
      * @throws ClientProtocolException
      * @throws IOException
      */
-    public static HttpResult executeUploadFile(CloseableHttpClient httpClient, String remoteFileUrl, String localFilePath, String charset, boolean closeHttpClient) throws IOException {
+    public static HttpResult executeUploadFile(CloseableHttpClient httpClient,
+    		String remoteFileUrl, 
+    		String localFilePath, 		
+    		String appid, 
+    		String username, 
+    		String groupid,
+    		boolean closeHttpClient,
+    		String charset   ) throws IOException {
         CloseableHttpResponse httpResponse = null;
         try {
             if (httpClient == null) {
@@ -393,12 +401,21 @@ public class HttpHelper {
             // 把文件转换成流对象FileBody
             File localFile = new File(localFilePath);
             FileBody fileBody = new FileBody(localFile);
+            StringBody sbAppid = new StringBody(appid,ContentType.TEXT_PLAIN);
+            StringBody sbUsername = new StringBody(username,ContentType.TEXT_PLAIN);
+            StringBody sbGroupid = new StringBody(groupid,ContentType.TEXT_PLAIN);
+
             // 以浏览器兼容模式运行，防止文件名乱码。
-            HttpEntity reqEntity = MultipartEntityBuilder.create().setMode(HttpMultipartMode.BROWSER_COMPATIBLE).addPart("uploadFile", fileBody).setCharset(CharsetUtils.get("UTF-8")).build();
-            // uploadFile对应服务端类的同名属性<File类型>
-            // .addPart("uploadFileName", uploadFileName)
-            // uploadFileName对应服务端类的同名属性<String类型>
+            HttpEntity reqEntity = MultipartEntityBuilder.create()
+            		.setMode(HttpMultipartMode.BROWSER_COMPATIBLE)
+            		.addPart("uploadFile", fileBody)
+            		.addPart("appid", sbAppid)
+            		.addPart("username", sbUsername)
+            		.addPart("groupid", sbGroupid)
+            		.setCharset(CharsetUtils.get("UTF-8")).build();
+
             HttpPost httpPost = new HttpPost(remoteFileUrl);
+            
             httpPost.setEntity(reqEntity);
             httpResponse = httpClient.execute(httpPost);
             Integer statusCode = httpResponse.getStatusLine().getStatusCode();

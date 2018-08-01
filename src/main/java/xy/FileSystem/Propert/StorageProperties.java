@@ -6,6 +6,7 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class StorageProperties {
 
 	private String location = "uploadfiles";
+	private String downloadto ="";
 	private boolean rename = true;	
 	private String downloadfrom = "";
 	private String template = "thymeleaf";
@@ -39,7 +40,13 @@ public class StorageProperties {
 	private String alibucketname = "";
 	private String alidownloadkey = "";
 	
-	
+	public String getDownloadto() {
+		return downloadto;
+	}
+
+	public void setDownloadto(String downloadto) {
+		this.downloadto = downloadto;
+	}
 	
 	public String getAliendpoint() {
 		return aliendpoint;
