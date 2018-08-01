@@ -208,8 +208,7 @@ public class FileUploadDownloadController {
 		
 		Boolean downloadSuccess = false;	
 		downloadSuccess = HttpHelper.executeDownloadFile(HttpHelper.createHttpClient(), 
-				"http://localhost:9091/files/wangxin_Tigase开发文档.doc", //服务器文件
-				//"/files/"+filename, //服务器文件
+				prop.getDownloadurl() + filename, //服务器文件
 				prop.getDownloadto() + filename, //下载到本地的文件
 				"UTF-8",
 				true);

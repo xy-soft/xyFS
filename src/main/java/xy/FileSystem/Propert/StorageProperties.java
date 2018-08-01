@@ -7,6 +7,7 @@ public class StorageProperties {
 
 	private String location = "uploadfiles";
 	private String downloadto ="";
+	private String downloadurl ="";
 	private boolean rename = true;	
 	private String downloadfrom = "";
 	private String template = "thymeleaf";
@@ -270,5 +271,13 @@ public class StorageProperties {
 
 	public void setTemplate(String template) {
 		this.template = template;
+	}
+
+	public String getDownloadurl() {
+		return downloadurl;
+	}
+
+	public void setDownloadurl(String downloadurl) {
+		this.downloadurl = downloadurl;
 	}
 }
