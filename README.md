@@ -365,3 +365,25 @@ spring.servlet.multipart.max-request-size=1024MB
 # oss 日志配置       #
 logging.config=classpath:logback.xml
 </code></pre>
+
+
+
+<H2>## 联系作者     ##</H2>
+
+如有合作意向、Bug、建议邮箱至475660@qq.com
+<br>
+QQ群：780461008
+<br>
+注意：本产品只是我业余时间开发验证和练手，目前Bug还较多。
+<br>
+欢迎对企业IM、协同门户、OA开发感兴趣的朋友和我一起打造系列产品线。
+<br>
+by XySoft team works
+<br>
+我的博客：https://www.cnblogs.com/starcrm/
+
+<br>
+我的主要开源作品：https://gitee.com/475660/xyTalk-pc
+
+<br>
+
