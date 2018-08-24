@@ -380,10 +380,10 @@ QQ群：780461008
 <br>
 by XySoft team works
 <br>
+我的主要开源作品：https://gitee.com/475660/xyTalk-pc/
+<br>
 我的博客：https://www.cnblogs.com/starcrm/
 
-<br>
-我的主要开源作品：https://gitee.com/475660/xyTalk-pc
 
 <br>
 
